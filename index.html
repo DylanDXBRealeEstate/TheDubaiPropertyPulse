@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dubai Property Pulse | Global Real Estate Investment</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --gold-light: #F4E8C1;
+            --dark: #0a0a0a;
+            --darker: #050505;
+            --gray: #1a1a1a;
+            --light-gray: #888;
+            --white: #ffffff;
+            --gradient-gold: linear-gradient(135deg, #D4AF37 0%, #F4E8C1 50%, #D4AF37 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--darker);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(5, 5, 5, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 1.2rem 5%;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 0.8rem 5%;
+            background: rgba(5, 5, 5, 0.98);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: var(--gradient-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 400;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .cta-button {
+            background: var(--gradient-gold);
+            color: var(--dark);
+            padding: 0.8rem 1.8rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            height: 90vh;
+            background: linear-gradient(rgba(5, 5, 5, 0.7), rgba(5, 5, 5, 0.9)), url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1920&q=80') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, transparent 0%, var(--darker) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            padding: 0 2rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #fff 0%, var(--gold-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--light-gray);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 0.8rem 1.8rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--gold);
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            background: var(--gray);
+            padding: 3rem 5%;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+        }
+
+        .stat-item p {
+            color: var(--light-gray);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Blog Section */
+        .blog-section {
+            padding: 6rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .section-header p {
+            color: var(--light-gray);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .blog-card {
+            background: var(--gray);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            cursor: pointer;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .blog-image {
+            height: 220px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .blog-card:hover .blog-image img {
+            transform: scale(1.05);
+        }
+
+        .blog-category {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--gold);
+            color: var(--dark);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .blog-content {
+            padding: 1.5rem;
+        }
+
+        .blog-date {
+            color: var(--gold);
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .blog-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--white);
+            line-height: 1.3;
+        }
+
+        .blog-excerpt {
+            color: var(--light-gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.2rem;
+        }
+
+        .read-more {
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.3s ease;
+        }
+
+        .read-more:hover {
+            gap: 0.8rem;
+        }
+
+        /* Lead Magnet Section */
+        .lead-magnet {
+            background: linear-gradient(135deg, var(--gray) 0%, var(--dark) 100%);
+            padding: 5rem 5%;
+            margin: 4rem 0;
+            border-radius: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lead-magnet::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .lead-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .lead-magnet h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .lead-magnet p {
+            color: var(--light-gray);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .email-form {
+            display: flex;
+            gap: 1rem;
+            max-width: 500px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .email-input {
+            flex: 1;
+            min-width: 250px;
+            padding: 1rem 1.5rem;
+            border-radius: 30px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--white);
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .email-input:focus {
+            border-color: var(--gold);
+        }
+
+        .email-input::placeholder {
+            color: var(--light-gray);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 6rem 5%;
+            background: var(--gray);
+            position: relative;
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .contact-info h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info p {
+            color: var(--light-gray);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 1.2rem;
+        }
+
+        .contact-form {
+            background: var(--darker);
+            padding: 2.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--white);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--white);
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--darker);
+            padding: 3rem 5%;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            background: var(--gradient-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--light-gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--gold);
+            color: var(--dark);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            color: var(--light-gray);
+            font-size: 0.9rem;
+            margin-top: 1.5rem;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Audio Player Styling */
+        .audio-player {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .play-btn {
+            width: 40px;
+            height: 40px;
+            background: var(--gold);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark);
+            font-size: 0.8rem;
+        }
+
+        .audio-wave {
+            flex: 1;
+            height: 30px;
+            background: repeating-linear-gradient(
+                90deg,
+                rgba(212, 175, 55, 0.3) 0px,
+                rgba(212, 175, 55, 0.3) 2px,
+                transparent 2px,
+                transparent 4px
+            );
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .audio-wave::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.5), transparent);
+            animation: wave 2s infinite;
+        }
+
+        @keyframes wave {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .audio-time {
+            font-size: 0.85rem;
+            color: var(--light-gray);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">Dubai Property Pulse</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#insights">Market Insights</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <a href="#contact" class="cta-button">Invest Now</a>
+            <button class="mobile-menu-btn">☰</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <span class="hero-badge">January 2026 Market Report</span>
+            <h1>Unlock Dubai's Record-Breaking Real Estate Market</h1>
+            <p>Join global investors capitalizing on 63% YoY growth, 6-8% rental yields, and zero tax advantages in the world's most dynamic property destination.</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="cta-button">Get Investment Guide</a>
+                <a href="#blog" class="btn-secondary">Read Latest Insights</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <div class="stats-bar">
+        <div class="stats-container">
+            <div class="stat-item">
+                <h3>AED 72.4B</h3>
+                <p>January 2026 Sales</p>
+            </div>
+            <div class="stat-item">
+                <h3>+63%</h3>
+                <p>Year-on-Year Growth</p>
+            </div>
+            <div class="stat-item">
+                <h3>6-8%</h3>
+                <p>Rental Yields</p>
+            </div>
+            <div class="stat-item">
+                <h3>0%</h3>
+                <p>Property Tax</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Blog Section -->
+    <section class="blog-section" id="blog">
+        <div class="section-header">
+            <h2>Market Intelligence & Investment Insights</h2>
+            <p>Data-driven analysis and exclusive opportunities in Dubai's premium real estate sectors</p>
+        </div>
+
+        <div class="blog-grid">
+            <!-- Featured Article -->
+            <article class="blog-card fade-in">
+                <div class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?w=800&q=80" alt="Dubai Skyline">
+                    <span class="blog-category">Market Report</span>
+                </div>
+                <div class="blog-content">
+                    <span class="blog-date">February 18, 2026</span>
+                    <h3>Dubai Real Estate: Why January 2026 Marks the Beginning of a New Investment Era</h3>
+                    <p class="blog-excerpt">Record-breaking AED 72.4 billion in transactions, 63% YoY growth, and the highest monthly sales value in history. Discover why global investors are flocking to Dubai.</p>
+                    
+                    <!-- Audio Player -->
+                    <div class="audio-player">
+                        <button class="play-btn">▶</button>
+                        <div class="audio-wave"></div>
+                        <span class="audio-time">4:30</span>
+                    </div>
+                    
+                    <a href="#" class="read-more">Read Full Analysis →</a>
+                </div>
+            </article>
+
+            <!-- Article 2 -->
+            <article class="blog-card fade-in">
+                <div class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1582672060674-bc2bd808a8b5?w=800&q=80" alt="Luxury Villa">
+                    <span class="blog-category">Investment Guide</span>
+                </div>
+                <div class="blog-content">
+                    <span class="blog-date">February 15, 2026</span>
+                    <h3>Top 5 Emerging Neighborhoods for 2026: From Dubai Islands to South Expansion</h3>
+                    <p class="blog-excerpt">Beyond Downtown and Marina: Discover the next wave of high-growth communities offering 15-20% entry discounts with massive appreciation potential.</p>
+                    <a href="#" class="read-more">Explore Areas →</a>
+                </div>
+            </article>
+
+            <!-- Article 3 -->
+            <article class="blog-card fade-in">
+                <div class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80" alt="Modern Architecture">
+                    <span class="blog-category">Legal & Tax</span>
+                </div>
+                <div class="blog-content">
+                    <span class="blog-date">February 10, 2026</span>
+                    <h3>The Golden Visa Advantage: How AED 2M Investment Secures 10-Year UAE Residency</h3>
+                    <p class="blog-excerpt">Complete guide to property investment visas, tax benefits, and the legal framework making Dubai the world's most investor-friendly destination.</p>
+                    <a href="#" class="read-more">Read Guide →</a>
+                </div>
+            </article>
+
+            <!-- Article 4 -->
+            <article class="blog-card fade-in">
+                <div class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&q=80" alt="Dubai Marina">
+                    <span class="blog-category">Yield Analysis</span>
+                </div>
+                <div class="blog-content">
+                    <span class="blog-date">February 5, 2026</span>
+                    <h3>Cash Flow Kings: Maximizing 8% Rental Returns in Business Bay & JVC</h3>
+                    <p class="blog-excerpt">Deep dive into rental yield strategies, tenant demographics, and why 87% cash transactions create unprecedented market stability.</p>
+                    <a href="#" class="read-more">View Analysis →</a>
+                </div>
+            </article>
+
+            <!-- Article 5 -->
+            <article class="blog-card fade-in">
+                <div class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80" alt="Luxury Interior">
+                    <span class="blog-category">Off-Plan</span>
+                </div>
+                <div class="blog-content">
+                    <span class="blog-date">February 1, 2026</span>
+                    <h3>Off-Plan Surge: 128% Value Increase & Post-Handover Payment Plans Explained</h3>
+                    <p class="blog-excerpt">Why off-plan sales are dominating January 2026, and how to leverage developer incentives for maximum capital efficiency.</p>
+                    <a href="#" class="read-more">Learn Strategy →</a>
+                </div>
+            </article>
+
+            <!-- Article 6 -->
+            <article class="blog-card fade-in">
+                <div class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80" alt="Downtown Dubai">
+                    <span class="blog-category">Luxury Market</span>
+                </div>
+                <div class="blog-content">
+                    <span class="blog-date">January 28, 2026</span>
+                    <h3>Ultra-Luxury Trends: Branded Residences & The $100M Villa Market</h3>
+                    <p class="blog-excerpt">Inside Emirates Hills and Palm Jumeirah: Why global HNWIs are paying premiums for limited-edition trophy assets.</p>
+                    <a href="#" class="read-more">Read Report →</a>
+                </div>
+            </article>
+        </div>
+
+        <!-- Lead Magnet -->
+        <div class="lead-magnet fade-in">
+            <div class="lead-content">
+                <h2>Get the 2026 Dubai Investment Playbook</h2>
+                <p>Exclusive report: Top 10 neighborhoods, price forecasts, and off-plan opportunities delivered weekly to your inbox.</p>
+                <form class="email-form" onsubmit="event.preventDefault(); alert('Thank you! Check your email for the guide.');">
+                    <input type="email" class="email-input" placeholder="Enter your email address" required>
+                    <button type="submit" class="cta-button">Get Free Access</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h2>Start Your Dubai Investment Journey</h2>
+                <p>Whether you're a first-time buyer or portfolio investor, I provide exclusive access to pre-market opportunities and personalized investment strategies tailored to your goals.</p>
+                
+                <div class="contact-methods">
+                    <div class="contact-method">
+                        <div class="contact-icon">📧</div>
+                        <div>
+                            <strong>Email</strong>
+                            <p style="color: var(--light-gray); margin: 0;">invest@dubaipropertypulse.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-method">
+                        <div class="contact-icon">📱</div>
+                        <div>
+                            <strong>WhatsApp</strong>
+                            <p style="color: var(--light-gray); margin: 0;">+971 50 XXX XXXX</p>
+                        </div>
+                    </div>
+                    <div class="contact-method">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <strong>Office</strong>
+                            <p style="color: var(--light-gray); margin: 0;">Downtown Dubai, UAE</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <form class="contact-form" onsubmit="event.preventDefault(); alert('Thank you for your inquiry! I will contact you within 24 hours.');">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" placeholder="Your name" required>
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" placeholder="your@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone (with country code)</label>
+                    <input type="tel" placeholder="+1 234 567 8900">
+                </div>
+                <div class="form-group">
+                    <label>Investment Interest</label>
+                    <select>
+                        <option>Residential Apartment</option>
+                        <option>Villa/Townhouse</option>
+                        <option>Commercial Property</option>
+                        <option>Off-Plan Investment</option>
+                        <option>Portfolio Diversification</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Budget Range (USD)</label>
+                    <select>
+                        <option>$300k - $500k</option>
+                        <option>$500k - $1M</option>
+                        <option>$1M - $3M</option>
+                        <option>$3M - $5M</option>
+                        <option>$5M+</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea placeholder="Tell me about your investment goals..."></textarea>
+                </div>
+                <button type="submit" class="cta-button" style="width: 100%;">Schedule Consultation</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">Dubai Property Pulse</div>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Investment Disclaimer</a>
+                <a href="#">RERA Registration</a>
+            </div>
+            <div class="social-links">
+                <a href="#">in</a>
+                <a href="#">X</a>
+                <a href="#">IG</a>
+                <a href="#">YT</a>
+            </div>
+            <p class="copyright">© 2026 Dubai Property Pulse. All rights reserved. RERA Registered Broker.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Audio player functionality
+        document.querySelectorAll('.play-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const isPlaying = this.textContent === '❚❚';
+                document.querySelectorAll('.play-btn').forEach(b => {
+                    b.textContent = '▶';
+                    b.closest('.audio-player').querySelector('.audio-wave').style.opacity = '0.5';
+                });
+                
+                if (!isPlaying) {
+                    this.textContent = '❚❚';
+                    this.closest('.audio-player').querySelector('.audio-wave').style.opacity = '1';
+                }
+            });
+        });
+
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', () => {
+            alert('Mobile menu would open here - add your mobile navigation logic');
+        });
+    </script>
+</body>
+</html>
