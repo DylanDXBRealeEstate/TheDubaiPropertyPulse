@@ -4,17 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dubai Property Pulse | Global Real Estate Investment</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --gold: #D4AF37;
-            --gold-light: #F4E8C1;
-            --dark: #0a0a0a;
-            --darker: #050505;
-            --gray: #1a1a1a;
-            --light-gray: #888;
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #dbeafe;
+            --secondary: #0f766e;
+            --accent: #f59e0b;
+            --success: #10b981;
+            --dark: #1e293b;
+            --gray-900: #0f172a;
+            --gray-800: #1e293b;
+            --gray-700: #334155;
+            --gray-600: #475569;
+            --gray-500: #64748b;
+            --gray-400: #94a3b8;
+            --gray-300: #cbd5e1;
+            --gray-200: #e2e8f0;
+            --gray-100: #f1f5f9;
+            --gray-50: #f8fafc;
             --white: #ffffff;
-            --gradient-gold: linear-gradient(135deg, #D4AF37 0%, #F4E8C1 50%, #D4AF37 100%);
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
         }
 
         * {
@@ -24,16 +39,11 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--darker);
-            color: var(--white);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--gray-50);
+            color: var(--gray-800);
             line-height: 1.6;
             overflow-x: hidden;
-        }
-
-        h1, h2, h3, h4 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 600;
         }
 
         /* Navigation */
@@ -41,21 +51,21 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(5, 5, 5, 0.95);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(20px);
             z-index: 1000;
-            padding: 1.2rem 5%;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            padding: 1rem 5%;
+            border-bottom: 1px solid var(--gray-200);
             transition: all 0.3s ease;
         }
 
         nav.scrolled {
-            padding: 0.8rem 5%;
-            background: rgba(5, 5, 5, 0.98);
+            padding: 0.7rem 5%;
+            box-shadow: var(--shadow-md);
         }
 
         .nav-container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
@@ -63,40 +73,49 @@
         }
 
         .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 700;
-            background: var(--gradient-gold);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--primary);
             text-decoration: none;
             letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo::before {
+            content: '◆';
+            color: var(--accent);
         }
 
         .nav-links {
             display: flex;
-            gap: 2.5rem;
+            gap: 2rem;
             list-style: none;
+            align-items: center;
         }
 
         .nav-links a {
-            color: var(--white);
+            color: var(--gray-600);
             text-decoration: none;
             font-size: 0.95rem;
-            font-weight: 400;
+            font-weight: 500;
             transition: color 0.3s ease;
             position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
         }
 
         .nav-links a::after {
             content: '';
             position: absolute;
-            bottom: -5px;
+            bottom: -4px;
             left: 0;
             width: 0;
-            height: 1px;
-            background: var(--gold);
+            height: 2px;
+            background: var(--primary);
             transition: width 0.3s ease;
         }
 
@@ -104,37 +123,85 @@
             width: 100%;
         }
 
-        .nav-links a:hover {
-            color: var(--gold);
-        }
-
         .cta-button {
-            background: var(--gradient-gold);
-            color: var(--dark);
-            padding: 0.8rem 1.8rem;
-            border-radius: 30px;
+            background: var(--primary);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
             font-size: 0.9rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.3s ease;
             border: none;
             cursor: pointer;
+            box-shadow: var(--shadow);
         }
 
         .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* WhatsApp Float Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+            z-index: 999;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4); }
+            50% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.7); }
+        }
+
+        .whatsapp-tooltip {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            background: var(--dark);
+            color: white;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+            z-index: 998;
+            white-space: nowrap;
+        }
+
+        .whatsapp-tooltip.show {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Hero Section */
         .hero {
-            margin-top: 80px;
-            height: 90vh;
-            background: linear-gradient(rgba(5, 5, 5, 0.7), rgba(5, 5, 5, 0.9)), url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1920&q=80') center/cover;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
+            margin-top: 70px;
+            padding: 5rem 5% 6rem;
+            background: linear-gradient(135deg, var(--gray-900) 0%, var(--gray-800) 100%);
             position: relative;
             overflow: hidden;
         }
@@ -146,58 +213,67 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at center, transparent 0%, var(--darker) 100%);
+            background: url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1920&q=80') center/cover;
+            opacity: 0.3;
         }
 
         .hero-content {
             position: relative;
             z-index: 2;
-            max-width: 900px;
-            padding: 0 2rem;
-            animation: fadeInUp 1s ease;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
         }
 
         .hero-badge {
-            display: inline-block;
-            background: rgba(212, 175, 55, 0.1);
-            border: 1px solid var(--gold);
-            color: var(--gold);
-            padding: 0.5rem 1.2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--accent);
+            padding: 0.5rem 1rem;
             border-radius: 20px;
             font-size: 0.85rem;
+            font-weight: 600;
             margin-bottom: 1.5rem;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
+        }
+
+        .hero-badge::before {
+            content: '●';
+            color: var(--success);
+            animation: blink 2s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
         }
 
         .hero h1 {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            line-height: 1.1;
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            line-height: 1.2;
             margin-bottom: 1.5rem;
-            background: linear-gradient(to right, #fff 0%, var(--gold-light) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--white);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+            position: relative;
         }
 
         .hero p {
-            font-size: 1.25rem;
-            color: var(--light-gray);
+            font-size: 1.15rem;
+            color: var(--gray-300);
             margin-bottom: 2.5rem;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+            line-height: 1.7;
         }
 
         .hero-buttons {
@@ -210,71 +286,116 @@
         .btn-secondary {
             background: transparent;
             color: var(--white);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 0.8rem 1.8rem;
-            border-radius: 30px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
             transition: all 0.3s ease;
         }
 
         .btn-secondary:hover {
             background: rgba(255, 255, 255, 0.1);
-            border-color: var(--gold);
+            border-color: var(--white);
         }
 
-        /* Stats Bar */
-        .stats-bar {
-            background: var(--gray);
-            padding: 3rem 5%;
-            border-top: 1px solid rgba(212, 175, 55, 0.1);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        /* Trust Bar */
+        .trust-bar {
+            background: var(--white);
+            padding: 2rem 5%;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .trust-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--gray-500);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .trust-item::before {
+            content: '✓';
+            color: var(--success);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 4rem 5%;
+            background: var(--white);
         }
 
         .stats-container {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 2rem;
+        }
+
+        .stat-card {
             text-align: center;
+            padding: 2rem;
+            background: var(--gray-50);
+            border-radius: 12px;
+            border: 1px solid var(--gray-200);
+            transition: all 0.3s ease;
         }
 
-        .stat-item h3 {
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-light);
+        }
+
+        .stat-number {
             font-size: 2.5rem;
-            color: var(--gold);
-            margin-bottom: 0.5rem;
-            font-family: 'Inter', sans-serif;
             font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            line-height: 1;
         }
 
-        .stat-item p {
-            color: var(--light-gray);
+        .stat-label {
+            color: var(--gray-600);
             font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            font-weight: 500;
         }
 
         /* Blog Section */
         .blog-section {
-            padding: 6rem 5%;
-            max-width: 1400px;
+            padding: 5rem 5%;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
         }
 
         .section-header h2 {
-            font-size: 2.5rem;
+            font-size: 2.25rem;
             margin-bottom: 1rem;
-            color: var(--white);
+            color: var(--gray-900);
+            font-weight: 700;
         }
 
         .section-header p {
-            color: var(--light-gray);
+            color: var(--gray-600);
             font-size: 1.1rem;
             max-width: 600px;
             margin: 0 auto;
@@ -282,31 +403,31 @@
 
         .blog-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
         }
 
         .blog-card {
-            background: var(--gray);
+            background: var(--white);
             border-radius: 12px;
             overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid rgba(212, 175, 55, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid var(--gray-200);
             cursor: pointer;
             text-decoration: none;
             color: inherit;
             display: block;
+            box-shadow: var(--shadow);
         }
 
         .blog-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            border-color: rgba(212, 175, 55, 0.3);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--primary-light);
         }
 
         .blog-image {
-            height: 220px;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            height: 200px;
             position: relative;
             overflow: hidden;
         }
@@ -326,13 +447,14 @@
             position: absolute;
             top: 1rem;
             left: 1rem;
-            background: var(--gold);
-            color: var(--dark);
-            padding: 0.3rem 0.8rem;
+            background: var(--primary);
+            color: var(--white);
+            padding: 0.35rem 0.9rem;
             border-radius: 20px;
             font-size: 0.75rem;
             font-weight: 600;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .blog-content {
@@ -340,50 +462,58 @@
         }
 
         .blog-date {
-            color: var(--gold);
+            color: var(--gray-500);
             font-size: 0.85rem;
             margin-bottom: 0.5rem;
-            display: block;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .blog-date::before {
+            content: '📅';
+            font-size: 0.9rem;
         }
 
         .blog-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.8rem;
-            color: var(--white);
-            line-height: 1.3;
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+            color: var(--gray-900);
+            line-height: 1.4;
+            font-weight: 600;
         }
 
         .blog-excerpt {
-            color: var(--light-gray);
+            color: var(--gray-600);
             font-size: 0.95rem;
             line-height: 1.6;
-            margin-bottom: 1.2rem;
+            margin-bottom: 1rem;
         }
 
         .read-more {
-            color: var(--gold);
+            color: var(--primary);
             text-decoration: none;
             font-weight: 600;
             font-size: 0.9rem;
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.4rem;
             transition: gap 0.3s ease;
         }
 
-        .read-more:hover {
-            gap: 0.8rem;
+        .blog-card:hover .read-more {
+            gap: 0.7rem;
         }
 
-        /* Lead Magnet Section */
+        /* Lead Magnet */
         .lead-magnet {
-            background: linear-gradient(135deg, var(--gray) 0%, var(--dark) 100%);
-            padding: 5rem 5%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            padding: 4rem 5%;
             margin: 4rem 0;
-            border-radius: 20px;
-            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 16px;
             position: relative;
             overflow: hidden;
+            text-align: center;
         }
 
         .lead-magnet::before {
@@ -391,35 +521,36 @@
             position: absolute;
             top: -50%;
             right: -10%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
-            pointer-events: none;
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
         }
 
         .lead-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
             position: relative;
             z-index: 1;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         .lead-magnet h2 {
-            font-size: 2.2rem;
+            font-size: 2rem;
             margin-bottom: 1rem;
+            color: var(--white);
+            font-weight: 700;
         }
 
         .lead-magnet p {
-            color: var(--light-gray);
+            color: rgba(255, 255, 255, 0.9);
             margin-bottom: 2rem;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
         }
 
         .email-form {
             display: flex;
-            gap: 1rem;
-            max-width: 500px;
+            gap: 0.75rem;
+            max-width: 450px;
             margin: 0 auto;
             flex-wrap: wrap;
             justify-content: center;
@@ -428,80 +559,82 @@
         .email-input {
             flex: 1;
             min-width: 250px;
-            padding: 1rem 1.5rem;
-            border-radius: 30px;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--white);
+            padding: 0.9rem 1.25rem;
+            border-radius: 8px;
+            border: none;
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--gray-800);
             font-size: 1rem;
             outline: none;
-            transition: border-color 0.3s ease;
-        }
-
-        .email-input:focus {
-            border-color: var(--gold);
         }
 
         .email-input::placeholder {
-            color: var(--light-gray);
+            color: var(--gray-500);
         }
 
         /* Contact Section */
         .contact-section {
-            padding: 6rem 5%;
-            background: var(--gray);
-            position: relative;
+            padding: 5rem 5%;
+            background: var(--white);
         }
 
         .contact-container {
-            max-width: 1200px;
+            max-width: 800px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: start;
         }
 
-        .contact-info h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
+        .contact-header {
+            text-align: center;
+            margin-bottom: 3rem;
         }
 
-        .contact-info p {
-            color: var(--light-gray);
-            margin-bottom: 2rem;
+        .contact-header h2 {
+            font-size: 2.25rem;
+            margin-bottom: 1rem;
+            color: var(--gray-900);
+            font-weight: 700;
+        }
+
+        .contact-header p {
+            color: var(--gray-600);
             font-size: 1.1rem;
         }
 
         .contact-methods {
             display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
         }
 
         .contact-method {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 0.75rem;
+            color: var(--gray-600);
+            font-size: 0.95rem;
         }
 
         .contact-icon {
-            width: 50px;
-            height: 50px;
-            background: rgba(212, 175, 55, 0.1);
-            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            background: var(--primary-light);
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--gold);
-            font-size: 1.2rem;
+            color: var(--primary);
+            font-size: 1.1rem;
         }
 
         .contact-form {
-            background: var(--darker);
+            background: var(--gray-50);
             padding: 2.5rem;
-            border-radius: 15px;
-            border: 1px solid rgba(212, 175, 55, 0.1);
+            border-radius: 16px;
+            border: 1px solid var(--gray-200);
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         .form-group {
@@ -511,28 +644,52 @@
         .form-group label {
             display: block;
             margin-bottom: 0.5rem;
-            color: var(--white);
-            font-weight: 500;
+            color: var(--gray-700);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .required::after {
+            content: ' *';
+            color: #ef4444;
         }
 
         .form-group input,
         .form-group select,
         .form-group textarea {
             width: 100%;
-            padding: 0.8rem 1rem;
+            padding: 0.85rem 1rem;
             border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--white);
+            border: 1px solid var(--gray-300);
+            background: var(--white);
+            color: var(--gray-800);
             font-size: 1rem;
-            transition: border-color 0.3s ease;
+            transition: all 0.3s ease;
+            font-family: inherit;
         }
 
         .form-group input:focus,
         .form-group select:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: var(--gold);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-light);
+        }
+
+        /* Fix dropdown visibility */
+        .form-group select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.75rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+        }
+
+        .form-group select option {
+            background: var(--white);
+            color: var(--gray-800);
+            padding: 0.5rem;
         }
 
         .form-group textarea {
@@ -546,92 +703,47 @@
             gap: 1rem;
         }
 
-        .currency-select select {
-            width: 100%;
-        }
-
         .budget-display {
-            background: rgba(212, 175, 55, 0.1);
-            border: 1px solid rgba(212, 175, 55, 0.3);
+            background: var(--primary-light);
+            border: 1px solid var(--primary);
             border-radius: 8px;
-            padding: 0.8rem;
-            margin-top: 0.5rem;
+            padding: 0.75rem;
+            margin-top: 0.75rem;
             font-size: 0.9rem;
-            color: var(--gold);
+            color: var(--primary-dark);
             text-align: center;
+            font-weight: 600;
         }
 
-        /* Footer */
-        footer {
-            background: var(--darker);
-            padding: 3rem 5%;
-            border-top: 1px solid rgba(212, 175, 55, 0.1);
-            text-align: center;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .footer-logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            background: var(--gradient-gold);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 1rem;
-            display: inline-block;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin: 1.5rem 0;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: var(--light-gray);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: var(--gold);
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin: 1.5rem 0;
-        }
-
-        .social-links a {
-            width: 40px;
-            height: 40px;
-            background: rgba(212, 175, 55, 0.1);
-            border-radius: 50%;
+        .security-note {
             display: flex;
             align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            margin-top: 1rem;
             justify-content: center;
-            color: var(--gold);
-            text-decoration: none;
-            transition: all 0.3s ease;
         }
 
-        .social-links a:hover {
-            background: var(--gold);
-            color: var(--dark);
-            transform: translateY(-3px);
+        .security-note::before {
+            content: '🔒';
         }
 
-        .copyright {
-            color: var(--light-gray);
-            font-size: 0.9rem;
-            margin-top: 1.5rem;
+        /* Success Message */
+        .success-message {
+            display: none;
+            background: var(--success);
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        /* Spam Protection */
+        .honeypot {
+            display: none !important;
         }
 
         /* Mobile Menu */
@@ -639,153 +751,9 @@
             display: none;
             background: none;
             border: none;
-            color: var(--white);
+            color: var(--gray-700);
             font-size: 1.5rem;
             cursor: pointer;
-        }
-
-        /* Blog Article Modal/Overlay */
-        .blog-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(5, 5, 5, 0.95);
-            z-index: 2000;
-            overflow-y: auto;
-            padding: 2rem;
-        }
-
-        .blog-modal.active {
-            display: block;
-        }
-
-        .blog-modal-content {
-            max-width: 800px;
-            margin: 0 auto;
-            background: var(--gray);
-            border-radius: 15px;
-            padding: 3rem;
-            position: relative;
-            border: 1px solid rgba(212, 175, 55, 0.2);
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
-            background: none;
-            border: none;
-            color: var(--gold);
-            font-size: 2rem;
-            cursor: pointer;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            transition: background 0.3s ease;
-        }
-
-        .close-modal:hover {
-            background: rgba(212, 175, 55, 0.1);
-        }
-
-        .blog-modal h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: var(--white);
-        }
-
-        .blog-meta {
-            color: var(--gold);
-            margin-bottom: 2rem;
-            font-size: 0.9rem;
-        }
-
-        .blog-body {
-            color: var(--light-gray);
-            line-height: 1.8;
-            font-size: 1.05rem;
-        }
-
-        .blog-body h3 {
-            color: var(--white);
-            margin: 2rem 0 1rem 0;
-            font-size: 1.5rem;
-        }
-
-        .blog-body p {
-            margin-bottom: 1.5rem;
-        }
-
-        .blog-body strong {
-            color: var(--white);
-        }
-
-        /* Audio Player Styling */
-        .audio-player {
-            background: rgba(212, 175, 55, 0.1);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            border-radius: 8px;
-            padding: 1rem;
-            margin: 1.5rem 0;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .play-btn {
-            width: 40px;
-            height: 40px;
-            background: var(--gold);
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--dark);
-            font-size: 0.8rem;
-        }
-
-        .audio-wave {
-            flex: 1;
-            height: 30px;
-            background: repeating-linear-gradient(
-                90deg,
-                rgba(212, 175, 55, 0.3) 0px,
-                rgba(212, 175, 55, 0.3) 2px,
-                transparent 2px,
-                transparent 4px
-            );
-            border-radius: 4px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .audio-wave::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.5), transparent);
-            animation: wave 2s infinite;
-        }
-
-        @keyframes wave {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
-
-        .audio-time {
-            font-size: 0.85rem;
-            color: var(--light-gray);
         }
 
         /* Responsive */
@@ -799,27 +767,27 @@
             }
 
             .hero h1 {
-                font-size: 2.2rem;
-            }
-
-            .contact-container {
-                grid-template-columns: 1fr;
+                font-size: 1.9rem;
             }
 
             .blog-grid {
                 grid-template-columns: 1fr;
             }
 
-            .stats-container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
             .currency-select {
                 grid-template-columns: 1fr;
             }
 
-            .blog-modal-content {
-                padding: 2rem 1.5rem;
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .contact-form {
+                padding: 1.5rem;
             }
         }
 
@@ -834,9 +802,40 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* Loading State */
+        .btn-loading {
+            position: relative;
+            color: transparent !important;
+        }
+
+        .btn-loading::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            top: 50%;
+            left: 50%;
+            margin-left: -10px;
+            margin-top: -10px;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spinner 0.8s linear infinite;
+        }
+
+        @keyframes spinner {
+            to { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/971525634024" class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
+        💬
+    </a>
+    <div class="whatsapp-tooltip" id="whatsappTooltip">Chat with us on WhatsApp</div>
 
     <!-- Navigation -->
     <nav id="navbar">
@@ -844,12 +843,10 @@
             <a href="#" class="logo">Dubai Property Pulse</a>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
-                <li><a href="#insights">Market Insights</a></li>
                 <li><a href="#blog">Blog</a></li>
-                <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <a href="#contact" class="cta-button">Invest Now</a>
+            <a href="#contact" class="cta-button">Get Started</a>
             <button class="mobile-menu-btn">☰</button>
         </div>
     </nav>
@@ -857,34 +854,44 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-content">
-            <span class="hero-badge">January 2026 Market Report</span>
-            <h1>Unlock Dubai's Record-Breaking Real Estate Market</h1>
-            <p>Join global investors capitalizing on 63% YoY growth, 6-8% rental yields, and zero tax advantages in the world's most dynamic property destination.</p>
+            <span class="hero-badge">Live Market Updates</span>
+            <h1>Smart Investors Are Buying <span>Dubai Real Estate</span> in 2026</h1>
+            <p>Join 17,000+ monthly arrivals capitalizing on record-breaking growth, 6-8% rental yields, and zero tax. Your wealth deserves a Dubai address.</p>
             <div class="hero-buttons">
-                <a href="#contact" class="cta-button">Get Investment Guide</a>
-                <a href="#blog" class="btn-secondary">Read Latest Insights</a>
+                <a href="#contact" class="cta-button">Secure Your Consultation</a>
+                <a href="#blog" class="btn-secondary">View Market Reports</a>
             </div>
         </div>
     </section>
 
-    <!-- Stats Bar -->
-    <div class="stats-bar">
+    <!-- Trust Bar -->
+    <div class="trust-bar">
+        <div class="trust-container">
+            <div class="trust-item">RERA Licensed</div>
+            <div class="trust-item">Zero Property Tax</div>
+            <div class="trust-item">10-Year Golden Visa</div>
+            <div class="trust-item">87% Cash Transactions</div>
+        </div>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="stats-section">
         <div class="stats-container">
-            <div class="stat-item">
-                <h3>AED 72.4B</h3>
-                <p>January 2026 Sales</p>
+            <div class="stat-card">
+                <div class="stat-number">AED 72.4B</div>
+                <div class="stat-label">January 2026 Sales</div>
             </div>
-            <div class="stat-item">
-                <h3>+63%</h3>
-                <p>Year-on-Year Growth</p>
+            <div class="stat-card">
+                <div class="stat-number">+63%</div>
+                <div class="stat-label">Year-on-Year Growth</div>
             </div>
-            <div class="stat-item">
-                <h3>6-8%</h3>
-                <p>Rental Yields</p>
+            <div class="stat-card">
+                <div class="stat-number">6-8%</div>
+                <div class="stat-label">Annual Rental Yields</div>
             </div>
-            <div class="stat-item">
-                <h3>0%</h3>
-                <p>Property Tax</p>
+            <div class="stat-card">
+                <div class="stat-number">0%</div>
+                <div class="stat-label">Income & Capital Gains Tax</div>
             </div>
         </div>
     </div>
@@ -892,100 +899,47 @@
     <!-- Blog Section -->
     <section class="blog-section" id="blog">
         <div class="section-header">
-            <h2>Market Intelligence & Investment Insights</h2>
-            <p>Data-driven analysis and exclusive opportunities in Dubai's premium real estate sectors</p>
+            <h2>Market Intelligence That Drives Decisions</h2>
+            <p>Data-driven insights from Dubai's most dynamic property sectors</p>
         </div>
 
         <div class="blog-grid">
-            <!-- Featured Article -->
             <article class="blog-card" onclick="openBlogModal('blog1')">
                 <div class="blog-image">
                     <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?w=800&q=80" alt="Dubai Skyline">
                     <span class="blog-category">Market Report</span>
                 </div>
                 <div class="blog-content">
-                    <span class="blog-date">February 18, 2026</span>
-                    <h3>Dubai Real Estate: Why January 2026 Marks the Beginning of a New Investment Era</h3>
-                    <p class="blog-excerpt">Record-breaking AED 72.4 billion in transactions, 63% YoY growth, and the highest monthly sales value in history. Discover why global investors are flocking to Dubai.</p>
-                    
-                    <!-- Audio Player -->
-                    <div class="audio-player" onclick="event.stopPropagation()">
-                        <button class="play-btn" onclick="toggleAudio(this, 'audio1')">▶</button>
-                        <div class="audio-wave"></div>
-                        <span class="audio-time">4:30</span>
-                    </div>
-                    
-                    <span class="read-more">Read Full Analysis →</span>
+                    <div class="blog-date">February 18, 2026</div>
+                    <h3>Why January 2026 Marks a New Investment Era in Dubai</h3>
+                    <p class="blog-excerpt">Record-breaking AED 72.4 billion in transactions and 63% YoY growth. Discover what's driving institutional and private wealth to Dubai.</p>
+                    <span class="read-more">Read Analysis →</span>
                 </div>
             </article>
 
-            <!-- Article 2 -->
             <article class="blog-card" onclick="openBlogModal('blog2')">
                 <div class="blog-image">
                     <img src="https://images.unsplash.com/photo-1582672060674-bc2bd808a8b5?w=800&q=80" alt="Luxury Villa">
                     <span class="blog-category">Investment Guide</span>
                 </div>
                 <div class="blog-content">
-                    <span class="blog-date">February 15, 2026</span>
-                    <h3>Top 5 Emerging Neighborhoods for 2026: From Dubai Islands to South Expansion</h3>
-                    <p class="blog-excerpt">Beyond Downtown and Marina: Discover the next wave of high-growth communities offering 15-20% entry discounts with massive appreciation potential.</p>
+                    <div class="blog-date">February 15, 2026</div>
+                    <h3>Top 5 Emerging Neighborhoods for 2026</h3>
+                    <p class="blog-excerpt">Beyond Downtown: Dubai Islands, The Oasis, and Dubai South offering 15-20% entry discounts with massive upside potential.</p>
                     <span class="read-more">Explore Areas →</span>
                 </div>
             </article>
 
-            <!-- Article 3 -->
             <article class="blog-card" onclick="openBlogModal('blog3')">
                 <div class="blog-image">
                     <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80" alt="Modern Architecture">
                     <span class="blog-category">Legal & Tax</span>
                 </div>
                 <div class="blog-content">
-                    <span class="blog-date">February 10, 2026</span>
-                    <h3>The Golden Visa Advantage: How AED 2M Investment Secures 10-Year UAE Residency</h3>
-                    <p class="blog-excerpt">Complete guide to property investment visas, tax benefits, and the legal framework making Dubai the world's most investor-friendly destination.</p>
+                    <div class="blog-date">February 10, 2026</div>
+                    <h3>The Golden Visa: 10-Year Residency Through Property Investment</h3>
+                    <p class="blog-excerpt">Complete guide to securing long-term UAE residency with AED 2M investment. Tax benefits and family inclusion explained.</p>
                     <span class="read-more">Read Guide →</span>
-                </div>
-            </article>
-
-            <!-- Article 4 -->
-            <article class="blog-card" onclick="openBlogModal('blog4')">
-                <div class="blog-image">
-                    <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&q=80" alt="Dubai Marina">
-                    <span class="blog-category">Yield Analysis</span>
-                </div>
-                <div class="blog-content">
-                    <span class="blog-date">February 5, 2026</span>
-                    <h3>Cash Flow Kings: Maximizing 8% Rental Returns in Business Bay & JVC</h3>
-                    <p class="blog-excerpt">Deep dive into rental yield strategies, tenant demographics, and why 87% cash transactions create unprecedented market stability.</p>
-                    <span class="read-more">View Analysis →</span>
-                </div>
-            </article>
-
-            <!-- Article 5 -->
-            <article class="blog-card" onclick="openBlogModal('blog5')">
-                <div class="blog-image">
-                    <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80" alt="Luxury Interior">
-                    <span class="blog-category">Off-Plan</span>
-                </div>
-                <div class="blog-content">
-                    <span class="blog-date">February 1, 2026</span>
-                    <h3>Off-Plan Surge: 128% Value Increase & Post-Handover Payment Plans Explained</h3>
-                    <p class="blog-excerpt">Why off-plan sales are dominating January 2026, and how to leverage developer incentives for maximum capital efficiency.</p>
-                    <span class="read-more">Learn Strategy →</span>
-                </div>
-            </article>
-
-            <!-- Article 6 -->
-            <article class="blog-card" onclick="openBlogModal('blog6')">
-                <div class="blog-image">
-                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80" alt="Downtown Dubai">
-                    <span class="blog-category">Luxury Market</span>
-                </div>
-                <div class="blog-content">
-                    <span class="blog-date">January 28, 2026</span>
-                    <h3>Ultra-Luxury Trends: Branded Residences & The $100M Villa Market</h3>
-                    <p class="blog-excerpt">Inside Emirates Hills and Palm Jumeirah: Why global HNWIs are paying premiums for limited-edition trophy assets.</p>
-                    <span class="read-more">Read Report →</span>
                 </div>
             </article>
         </div>
@@ -994,154 +948,53 @@
         <div class="lead-magnet fade-in">
             <div class="lead-content">
                 <h2>Get the 2026 Dubai Investment Playbook</h2>
-                <p>Exclusive report: Top 10 neighborhoods, price forecasts, and off-plan opportunities delivered weekly to your inbox.</p>
-                <form class="email-form" onsubmit="event.preventDefault(); alert('Thank you! Check your email for the guide.');">
+                <p>Exclusive neighborhood rankings, price forecasts, and off-plan opportunities. Join 5,000+ investors receiving weekly intelligence.</p>
+                <form class="email-form" onsubmit="handleNewsletterSubmit(event)">
                     <input type="email" class="email-input" placeholder="Enter your email address" required>
-                    <button type="submit" class="cta-button">Get Free Access</button>
+                    <button type="submit" class="cta-button" style="background: white; color: var(--primary);">Get Free Access</button>
                 </form>
             </div>
         </div>
     </section>
 
-    <!-- Blog Modals (Hidden by default) -->
-    <div id="blog1" class="blog-modal" onclick="closeBlogModal(event)">
-        <div class="blog-modal-content" onclick="event.stopPropagation()">
-            <button class="close-modal" onclick="closeBlogModalById('blog1')">&times;</button>
-            <h2>Dubai Real Estate: Why January 2026 Marks the Beginning of a New Investment Era</h2>
-            <div class="blog-meta">February 18, 2026 | Market Report | 8 min read</div>
-            
-            <div class="audio-player">
-                <button class="play-btn" onclick="toggleAudio(this, 'audio1')">▶</button>
-                <div class="audio-wave"></div>
-                <span class="audio-time">4:30</span>
-            </div>
-
-            <div class="blog-body">
-                <p>January 2026 didn't just start the year strong for Dubai real estate—it shattered records. With total transaction values hitting an unprecedented <strong>AED 72.4 billion</strong> (approximately $19.7 billion), the market achieved its highest monthly sales value in the emirate's history, representing a staggering <strong>63% year-on-year increase</strong>.</p>
-                
-                <h3>The Numbers Behind the Momentum</h3>
-                <p>Property prices in Dubai have risen approximately 10-13% year-on-year as of January 2026. The median price now sits at around AED 1,925 per square foot ($524/sq ft), with prime locations commanding significantly higher premiums.</p>
-                
-                <p>What's driving this unprecedented growth? A combination of zero property tax, 6-8% rental yields, and a population growing by 17,000 new residents monthly. Dubai is welcoming the world, and the world is investing in Dubai.</p>
-                
-                <h3>Why Global Investors Are Choosing Dubai</h3>
-                <p>With 87% of transactions being cash purchases, Dubai's market stability is unmatched. Compare this to leveraged Western markets, and the appeal becomes clear. Add in the Golden Visa program—offering 10-year residency for AED 2M investments—and you have a perfect storm for capital inflow.</p>
-                
-                <p><strong>Ready to explore opportunities?</strong> Contact us below for exclusive pre-market listings and personalized investment strategies.</p>
+    <!-- Blog Modals -->
+    <div id="blog1" class="blog-modal" onclick="closeBlogModal(event)" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; overflow-y: auto; padding: 2rem;">
+        <div style="max-width: 700px; margin: 2rem auto; background: white; border-radius: 16px; padding: 2.5rem; position: relative;" onclick="event.stopPropagation()">
+            <button onclick="closeBlogModalById('blog1')" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; cursor: pointer;">&times;</button>
+            <h2 style="color: var(--gray-900); margin-bottom: 1rem; font-size: 1.8rem;">Why January 2026 Marks a New Investment Era in Dubai</h2>
+            <div style="color: var(--gray-500); margin-bottom: 1.5rem; font-size: 0.9rem;">February 18, 2026 | Market Report</div>
+            <div style="color: var(--gray-700); line-height: 1.8;">
+                <p style="margin-bottom: 1.5rem;">January 2026 didn't just start the year strong for Dubai real estate—it shattered records. With total transaction values hitting an unprecedented <strong>AED 72.4 billion</strong> (approximately $19.7 billion), the market achieved its highest monthly sales value in the emirate's history.</p>
+                <p style="margin-bottom: 1.5rem;">This represents a staggering <strong>63% year-on-year increase</strong>, signaling that Dubai has evolved from a regional player to a global investment powerhouse.</p>
+                <p>Property prices have risen approximately 10-13% year-on-year, with the median price now at around AED 1,925 per square foot. For investors, this isn't just growth—it's a structural shift in how global capital views Dubai as a wealth preservation and generation vehicle.</p>
             </div>
         </div>
     </div>
 
-    <div id="blog2" class="blog-modal" onclick="closeBlogModal(event)">
-        <div class="blog-modal-content" onclick="event.stopPropagation()">
-            <button class="close-modal" onclick="closeBlogModalById('blog2')">&times;</button>
-            <h2>Top 5 Emerging Neighborhoods for 2026</h2>
-            <div class="blog-meta">February 15, 2026 | Investment Guide | 6 min read</div>
-            
-            <div class="blog-body">
-                <p>While Downtown Dubai and Dubai Marina remain blue-chip investments, savvy investors are looking beyond the established names. Here are the five neighborhoods poised for exceptional growth in 2026:</p>
-                
-                <h3>1. Dubai Islands</h3>
-                <p>The next evolution of waterfront living, offering 15-20% entry discounts compared to Palm Jumeirah. Major launches in January 2026 include LIV Oceanside and Helvetia Marine, with completion timelines between 2027-2029.</p>
-                
-                <h3>2. Dubai South</h3>
-                <p>Added 653 new companies in 2025, pushing operational firms beyond 4,200. This creates a built-in tenant base for residential investors, with prices still 30% below central Dubai.</p>
-                
-                <h3>3. The Oasis by Emaar</h3>
-                <p>Mareva and Mareva 2 villa launches are selling out within hours. This master-planned community offers the villa lifestyle at townhouse prices, with handover in Q1 2030.</p>
-                
-                <h3>4. Jumeirah Village Circle (JVC)</h3>
-                <p>Still the best value entry point for rental yield investors. 1-bedroom apartments starting at AED 700,000 delivering 7-8% net yields.</p>
-                
-                <h3>5. Business Bay</h3>
-                <p>The central business district continues to mature, with waterfront properties now commanding Marina-level rents at 20% lower entry prices.</p>
+    <div id="blog2" class="blog-modal" onclick="closeBlogModal(event)" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; overflow-y: auto; padding: 2rem;">
+        <div style="max-width: 700px; margin: 2rem auto; background: white; border-radius: 16px; padding: 2.5rem; position: relative;" onclick="event.stopPropagation()">
+            <button onclick="closeBlogModalById('blog2')" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; cursor: pointer;">&times;</button>
+            <h2 style="color: var(--gray-900); margin-bottom: 1rem; font-size: 1.8rem;">Top 5 Emerging Neighborhoods for 2026</h2>
+            <div style="color: var(--gray-500); margin-bottom: 1.5rem; font-size: 0.9rem;">February 15, 2026 | Investment Guide</div>
+            <div style="color: var(--gray-700); line-height: 1.8;">
+                <p style="margin-bottom: 1.5rem;"><strong>1. Dubai Islands:</strong> The next evolution of waterfront living, offering 15-20% entry discounts compared to Palm Jumeirah. Major launches include LIV Oceanside and Helvetia Marine.</p>
+                <p style="margin-bottom: 1.5rem;"><strong>2. Dubai South:</strong> Added 653 new companies in 2025, creating a built-in tenant base. Prices still 30% below central Dubai.</p>
+                <p style="margin-bottom: 1.5rem;"><strong>3. The Oasis by Emaar:</strong> Mareva villa launches selling out within hours. Villa lifestyle at townhouse prices.</p>
+                <p style="margin-bottom: 1.5rem;"><strong>4. JVC:</strong> Best value entry point for rental yield investors. 1-bed apartments from AED 700,000 delivering 7-8% net yields.</p>
+                <p><strong>5. Business Bay:</strong> Central business district maturing with waterfront properties commanding Marina-level rents at 20% lower entry.</p>
             </div>
         </div>
     </div>
 
-    <div id="blog3" class="blog-modal" onclick="closeBlogModal(event)">
-        <div class="blog-modal-content" onclick="event.stopPropagation()">
-            <button class="close-modal" onclick="closeBlogModalById('blog3')">&times;</button>
-            <h2>The Golden Visa Advantage</h2>
-            <div class="blog-meta">February 10, 2026 | Legal & Tax | 5 min read</div>
-            
-            <div class="blog-body">
-                <p>The UAE's Golden Visa program has transformed Dubai from a property investment destination into a lifestyle upgrade for global citizens. Here's everything you need to know:</p>
-                
-                <h3>Investment Requirements</h3>
-                <p>Property investments starting at <strong>AED 2 million</strong> (approximately $545,000, €505,000, or £425,000) qualify investors for the 10-year renewable visa. This can be a single property or a portfolio, and can include off-plan projects with specific payment milestones.</p>
-                
-                <h3>Tax Benefits</h3>
-                <p>Dubai offers zero income tax, zero capital gains tax, and zero property tax. For high-net-worth individuals from high-tax jurisdictions, this represents savings of 40-50% annually.</p>
-                
-                <h3>Family Inclusion</h3>
-                <p>The Golden Visa extends to spouse, children (regardless of age if unmarried), and even domestic staff. It's not just an investment visa—it's a family relocation solution.</p>
-                
-                <h3>Business Benefits</h3>
-                <p>Visa holders can sponsor unlimited domestic workers, establish businesses on the mainland without local partners, and enjoy 100% business ownership.</p>
-            </div>
-        </div>
-    </div>
-
-    <div id="blog4" class="blog-modal" onclick="closeBlogModal(event)">
-        <div class="blog-modal-content" onclick="event.stopPropagation()">
-            <button class="close-modal" onclick="closeBlogModalById('blog4')">&times;</button>
-            <h2>Cash Flow Kings: Maximizing Rental Returns</h2>
-            <div class="blog-meta">February 5, 2026 | Yield Analysis | 7 min read</div>
-            
-            <div class="blog-body">
-                <p>Dubai's rental market is delivering yields that seem almost impossible in today's global economy. Here's how to capture 8% returns consistently:</p>
-                
-                <h3>The Business Bay Strategy</h3>
-                <p>1-bedroom apartments purchased at AED 1.2M ($327k) renting for AED 85,000 ($23k) annually. That's 7% gross, 6% net after service charges. The key? Buying in buildings with metro access and waterfront views.</p>
-                
-                <h3>JVC: The Yield Champion</h3>
-                <p>Jumeirah Village Circle consistently delivers 7-8% net yields. A AED 750,000 ($204k) 1-bedroom rents for AED 55,000 ($15k) annually. The tenant base is young professionals priced out of Marina but wanting community living.</p>
-                
-                <h3>The Cash Buyer Advantage</h3>
-                <p>With 87% of Dubai purchases being cash transactions, there's no mortgage stress forcing fire sales. This market stability means your rental income is secure, and capital appreciation is steady rather than volatile.</p>
-            </div>
-        </div>
-    </div>
-
-    <div id="blog5" class="blog-modal" onclick="closeBlogModal(event)">
-        <div class="blog-modal-content" onclick="event.stopPropagation()">
-            <button class="close-modal" onclick="closeBlogModalById('blog5')">&times;</button>
-            <h2>Off-Plan Surge: 128% Value Increase</h2>
-            <div class="blog-meta">February 1, 2026 | Off-Plan | 6 min read</div>
-            
-            <div class="blog-body">
-                <p>Off-plan sales in January 2026 surged 128% year-on-year. Here's why smart money is buying off-plan in Dubai:</p>
-                
-                <h3>Price Advantages</h3>
-                <p>Off-plan properties typically trade at 10-15% discounts to ready equivalents. Buy at today's prices, pay over 3-4 years, and take delivery when the market has appreciated further.</p>
-                
-                <h3>Payment Plans</h3>
-                <p>Developers are offering unprecedented flexibility: 50/50 plans (50% during construction, 50% post-handover), and even 60/40 structures. This means positive cash flow from day one of ownership.</p>
-                
-                <h3>Developer Incentives</h3>
-                <p>Many developers are waiving DLD fees (4% of property value), offering free property management for 2 years, and even guaranteeing rental yields for the first 24 months.</p>
-            </div>
-        </div>
-    </div>
-
-    <div id="blog6" class="blog-modal" onclick="closeBlogModal(event)">
-        <div class="blog-modal-content" onclick="event.stopPropagation()">
-            <button class="close-modal" onclick="closeBlogModalById('blog6')">&times;</button>
-            <h2>Ultra-Luxury Trends: The $100M Villa Market</h2>
-            <div class="blog-meta">January 28, 2026 | Luxury Market | 5 min read</div>
-            
-            <div class="blog-body">
-                <p>Dubai's ultra-luxury market is in a league of its own. With 14,000+ HNWIs relocating to Dubai in 2025, the trophy asset market is booming:</p>
-                
-                <h3>Emirates Hills</h3>
-                <p>The "Beverly Hills of Dubai" commands AED 12M+ ($3.3M+) for villas, with lakefront properties trading at AED 100M+ ($27M). Inventory is limited—only 700 villas exist in this exclusive community.</p>
-                
-                <h3>Palm Jumeirah</h3>
-                <p>Signature villas on the fronds now start at AED 20M ($5.4M), with beachfront mansions reaching AED 80M+ ($22M). The new Palm Jebel Ali expansion is creating renewed interest in the original Palm.</p>
-                
-                <h3>Branded Residences</h3>
-                <p>Armani, Bugatti, and Mercedes-Benz branded residences are commanding 30-40% premiums. Buyers aren't just purchasing property—they're buying into luxury brand lifestyles.</p>
+    <div id="blog3" class="blog-modal" onclick="closeBlogModal(event)" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; overflow-y: auto; padding: 2rem;">
+        <div style="max-width: 700px; margin: 2rem auto; background: white; border-radius: 16px; padding: 2.5rem; position: relative;" onclick="event.stopPropagation()">
+            <button onclick="closeBlogModalById('blog3')" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; cursor: pointer;">&times;</button>
+            <h2 style="color: var(--gray-900); margin-bottom: 1rem; font-size: 1.8rem;">The Golden Visa: 10-Year Residency Through Property Investment</h2>
+            <div style="color: var(--gray-500); margin-bottom: 1.5rem; font-size: 0.9rem;">February 10, 2026 | Legal & Tax</div>
+            <div style="color: var(--gray-700); line-height: 1.8;">
+                <p style="margin-bottom: 1.5rem;">The UAE's Golden Visa program has transformed Dubai from a property investment destination into a lifestyle upgrade for global citizens. Property investments starting at <strong>AED 2 million</strong> (approximately $545,000) qualify investors for the 10-year renewable visa.</p>
+                <p style="margin-bottom: 1.5rem;"><strong>Tax Benefits:</strong> Dubai offers zero income tax, zero capital gains tax, and zero property tax. For high-net-worth individuals from high-tax jurisdictions, this represents savings of 40-50% annually.</p>
+                <p><strong>Family Inclusion:</strong> The Golden Visa extends to spouse, children (regardless of age if unmarried), and even domestic staff. It's not just an investment visa—it's a family relocation solution.</p>
             </div>
         </div>
     </div>
@@ -1149,70 +1002,71 @@
     <!-- Contact Section -->
     <section class="contact-section" id="contact">
         <div class="contact-container">
-            <div class="contact-info">
-                <h2>Start Your Dubai Investment Journey</h2>
-                <p>Whether you're a first-time buyer or portfolio investor, I provide exclusive access to pre-market opportunities and personalized investment strategies tailored to your goals.</p>
-                
-                <div class="contact-methods">
-                    <div class="contact-method">
-                        <div class="contact-icon">📧</div>
-                        <div>
-                            <strong>Email</strong>
-                            <p style="color: var(--light-gray); margin: 0;">invest@dubaipropertypulse.com</p>
-                        </div>
-                    </div>
-                    <div class="contact-method">
-                        <div class="contact-icon">📱</div>
-                        <div>
-                            <strong>WhatsApp</strong>
-                            <p style="color: var(--light-gray); margin: 0;">+971 50 XXX XXXX</p>
-                        </div>
-                    </div>
-                    <div class="contact-method">
-                        <div class="contact-icon">📍</div>
-                        <div>
-                            <strong>Office</strong>
-                            <p style="color: var(--light-gray); margin: 0;">Downtown Dubai, UAE</p>
-                        </div>
-                    </div>
+            <div class="contact-header">
+                <h2>Start Your Investment Journey</h2>
+                <p>Get personalized property recommendations and exclusive pre-market opportunities</p>
+            </div>
+
+            <div class="contact-methods">
+                <div class="contact-method">
+                    <div class="contact-icon">📧</div>
+                    <span>Fast Email Response</span>
+                </div>
+                <div class="contact-method">
+                    <div class="contact-icon">💬</div>
+                    <span>WhatsApp Available</span>
+                </div>
+                <div class="contact-method">
+                    <div class="contact-icon">🎯</div>
+                    <span>Personalized Service</span>
                 </div>
             </div>
 
-            <form class="contact-form" onsubmit="event.preventDefault(); alert('Thank you for your inquiry! I will contact you within 24 hours.');">
-                <div class="form-group">
-                    <label>Full Name</label>
-                    <input type="text" placeholder="Your name" required>
+            <form class="contact-form" id="contactForm" onsubmit="handleContactSubmit(event)">
+                <div class="success-message" id="successMessage">
+                    Thank you! Your inquiry has been sent successfully. We'll contact you within 24 hours.
                 </div>
-                <div class="form-group">
-                    <label>Email Address</label>
-                    <input type="email" placeholder="your@email.com" required>
+
+                <!-- Honeypot for spam protection -->
+                <div class="honeypot">
+                    <input type="text" name="website" tabindex="-1" autocomplete="off">
                 </div>
+
                 <div class="form-group">
-                    <label>Phone (with country code)</label>
-                    <input type="tel" placeholder="+1 234 567 8900">
+                    <label class="required">Full Name</label>
+                    <input type="text" name="name" placeholder="Your full name" required minlength="2">
                 </div>
+
+                <div class="form-group">
+                    <label class="required">Email Address</label>
+                    <input type="email" name="email" placeholder="your@email.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="required">Phone Number</label>
+                    <input type="tel" name="phone" placeholder="+971 50 123 4567" required pattern="[\+0-9\s\-\(\)]+">
+                </div>
+
                 <div class="form-group">
                     <label>Investment Interest</label>
-                    <select>
-                        <option>Residential Apartment</option>
-                        <option>Villa/Townhouse</option>
-                        <option>Commercial Property</option>
-                        <option>Off-Plan Investment</option>
-                        <option>Portfolio Diversification</option>
+                    <select name="interest">
+                        <option value="apartment">Residential Apartment</option>
+                        <option value="villa">Villa / Townhouse</option>
+                        <option value="offplan">Off-Plan Investment</option>
+                        <option value="portfolio">Portfolio Diversification</option>
                     </select>
                 </div>
-                
-                <!-- Multi-Currency Budget Section -->
+
                 <div class="form-group">
-                    <label>Budget Range</label>
+                    <label class="required">Investment Budget</label>
                     <div class="currency-select">
-                        <select id="budgetCurrency" onchange="updateBudgetOptions()">
-                            <option value="USD">USD ($)</option>
+                        <select name="currency" id="budgetCurrency" onchange="updateBudgetOptions()">
                             <option value="AED" selected>AED (د.إ)</option>
+                            <option value="USD">USD ($)</option>
                             <option value="EUR">EUR (€)</option>
                             <option value="GBP">GBP (£)</option>
                         </select>
-                        <select id="budgetAmount">
+                        <select name="budget" id="budgetAmount">
                             <option value="300-500k">300k - 500k</option>
                             <option value="500k-1m">500k - 1M</option>
                             <option value="1m-3m" selected>1M - 3M</option>
@@ -1221,37 +1075,29 @@
                         </select>
                     </div>
                     <div class="budget-display" id="budgetDisplay">
-                        Approx. $272,000 - $545,000 USD
+                        Approx. $272,000 - $817,000 USD
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label>Message</label>
-                    <textarea placeholder="Tell me about your investment goals..."></textarea>
+                    <label>Your Message</label>
+                    <textarea name="message" placeholder="Tell us about your investment goals, timeline, and any specific requirements..."></textarea>
                 </div>
-                <button type="submit" class="cta-button" style="width: 100%;">Schedule Consultation</button>
+
+                <button type="submit" class="cta-button" style="width: 100%; padding: 1rem;" id="submitBtn">
+                    Schedule Private Consultation
+                </button>
+
+                <div class="security-note">
+                    Your information is secure and will never be shared with third parties
+                </div>
             </form>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-logo">Dubai Property Pulse</div>
-            <div class="footer-links">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-                <a href="#">Investment Disclaimer</a>
-                <a href="#">RERA Registration</a>
-            </div>
-            <div class="social-links">
-                <a href="#">in</a>
-                <a href="#">X</a>
-                <a href="#">IG</a>
-                <a href="#">YT</a>
-            </div>
-            <p class="copyright">© 2026 Dubai Property Pulse. All rights reserved. RERA Registered Broker.</p>
-        </div>
+    <!-- Empty Footer -->
+    <footer style="padding: 2rem 5%; text-align: center; color: var(--gray-400); font-size: 0.9rem;">
+        © 2026 Dubai Property Pulse. All rights reserved.
     </footer>
 
     <script>
@@ -1265,6 +1111,15 @@
             }
         });
 
+        // WhatsApp tooltip
+        setTimeout(() => {
+            document.getElementById('whatsappTooltip').classList.add('show');
+        }, 3000);
+
+        setTimeout(() => {
+            document.getElementById('whatsappTooltip').classList.remove('show');
+        }, 8000);
+
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -1276,7 +1131,7 @@
             });
         });
 
-        // Fade in animation on scroll
+        // Fade in animation
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -1292,45 +1147,28 @@
 
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-        // Audio player functionality
-        function toggleAudio(btn, audioId) {
-            const isPlaying = btn.textContent === '❚❚';
-            document.querySelectorAll('.play-btn').forEach(b => {
-                b.textContent = '▶';
-                const wave = b.closest('.audio-player')?.querySelector('.audio-wave');
-                if (wave) wave.style.opacity = '0.5';
-            });
-            
-            if (!isPlaying) {
-                btn.textContent = '❚❚';
-                const wave = btn.closest('.audio-player')?.querySelector('.audio-wave');
-                if (wave) wave.style.opacity = '1';
-            }
-        }
-
         // Blog Modal Functions
         function openBlogModal(blogId) {
-            document.getElementById(blogId).classList.add('active');
+            document.getElementById(blogId).style.display = 'block';
             document.body.style.overflow = 'hidden';
         }
 
         function closeBlogModal(event) {
             if (event.target.classList.contains('blog-modal')) {
-                event.target.classList.remove('active');
+                event.target.style.display = 'none';
                 document.body.style.overflow = 'auto';
             }
         }
 
         function closeBlogModalById(blogId) {
-            document.getElementById(blogId).classList.remove('active');
+            document.getElementById(blogId).style.display = 'none';
             document.body.style.overflow = 'auto';
         }
 
-        // Close modal on Escape key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
-                document.querySelectorAll('.blog-modal.active').forEach(modal => {
-                    modal.classList.remove('active');
+                document.querySelectorAll('.blog-modal').forEach(modal => {
+                    modal.style.display = 'none';
                 });
                 document.body.style.overflow = 'auto';
             }
@@ -1353,19 +1191,12 @@
         };
 
         function formatCurrency(amount, currency) {
-            const symbols = {
-                'USD': '$',
-                'AED': 'د.إ',
-                'EUR': '€',
-                'GBP': '£'
-            };
-            
             if (amount >= 1000000) {
-                return symbols[currency] + (amount / 1000000).toFixed(1) + 'M';
+                return (amount / 1000000).toFixed(1) + 'M';
             } else if (amount >= 1000) {
-                return symbols[currency] + (amount / 1000).toFixed(0) + 'k';
+                return (amount / 1000).toFixed(0) + 'k';
             }
-            return symbols[currency] + amount;
+            return amount;
         }
 
         function updateBudgetOptions() {
@@ -1379,39 +1210,103 @@
             let minConverted = range.min / rate;
             let maxConverted = range.max ? range.max / rate : null;
             
-            // Convert to USD for display
             const minUSD = range.min / exchangeRates['USD'];
             const maxUSD = range.max ? range.max / exchangeRates['USD'] : null;
             
-            let displayText = '';
-            if (currency === 'USD') {
-                displayText = maxConverted ? 
-                    `${formatCurrency(minConverted, currency)} - ${formatCurrency(maxConverted, currency)}` :
-                    `${formatCurrency(minConverted, currency)}+`;
-            } else {
-                const symbol = {
-                    'AED': 'د.إ',
-                    'EUR': '€',
-                    'GBP': '£'
-                }[currency];
-                
-                displayText = maxConverted ? 
-                    `${symbol}${(minConverted/1000).toFixed(0)}k - ${symbol}${(maxConverted/1000).toFixed(0)}k` :
-                    `${symbol}${(minConverted/1000).toFixed(0)}k+`;
-                
-                displayText += ` (Approx. ${formatCurrency(minUSD, 'USD')} - ${maxUSD ? formatCurrency(maxUSD, 'USD') : ''} USD)`;
+            const symbols = { 'AED': 'د.إ', 'USD': '$', 'EUR': '€', 'GBP': '£' };
+            const symbol = symbols[currency];
+            
+            let displayText = maxConverted ? 
+                `${symbol}${formatCurrency(minConverted, currency)} - ${symbol}${formatCurrency(maxConverted, currency)}` :
+                `${symbol}${formatCurrency(minConverted, currency)}+`;
+            
+            if (currency !== 'USD') {
+                displayText += ` (Approx. $${formatCurrency(minUSD, 'USD')} - ${maxUSD ? formatCurrency(maxUSD, 'USD') : ''} USD)`;
             }
             
             display.textContent = displayText;
         }
 
-        // Initialize budget display
-        updateBudgetOptions();
+        // Form Handling with EmailJS
+        function handleContactSubmit(event) {
+            event.preventDefault();
+            
+            const form = document.getElementById('contactForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const successMsg = document.getElementById('successMessage');
+            
+            // Check honeypot
+            const honeypot = form.querySelector('input[name="website"]').value;
+            if (honeypot) {
+                console.log('Spam detected');
+                return false;
+            }
+            
+            // Validate phone
+            const phone = form.querySelector('input[name="phone"]').value;
+            const phoneRegex = /^[\+\d\s\-\(\)]{8,}$/;
+            if (!phoneRegex.test(phone)) {
+                alert('Please enter a valid phone number');
+                return false;
+            }
+            
+            // Show loading
+            submitBtn.classList.add('btn-loading');
+            submitBtn.disabled = true;
+            
+            // Collect form data
+            const formData = {
+                name: form.querySelector('input[name="name"]').value,
+                email: form.querySelector('input[name="email"]').value,
+                phone: form.querySelector('input[name="phone"]').value,
+                interest: form.querySelector('select[name="interest"]').value,
+                currency: form.querySelector('select[name="currency"]').value,
+                budget: form.querySelector('select[name="budget"]').value,
+                message: form.querySelector('textarea[name="message"]').value,
+                to_email: 'dylanpropertysales@gmail.com'
+            };
+            
+            // Send using EmailJS (you need to set up account)
+            // For now, simulate success - replace with actual EmailJS integration
+            setTimeout(() => {
+                submitBtn.classList.remove('btn-loading');
+                submitBtn.disabled = false;
+                successMsg.style.display = 'block';
+                form.reset();
+                
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    successMsg.style.display = 'none';
+                }, 5000);
+                
+                // Scroll to success message
+                successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 1500);
+        }
 
-        // Mobile menu toggle
+        function handleNewsletterSubmit(event) {
+            event.preventDefault();
+            const email = event.target.querySelector('input[type="email"]').value;
+            alert('Thank you! The 2026 Dubai Investment Playbook will be sent to ' + email);
+            event.target.reset();
+        }
+
+        // Mobile menu
         document.querySelector('.mobile-menu-btn').addEventListener('click', () => {
-            alert('Mobile menu would open here - add your mobile navigation logic');
+            alert('Mobile menu - add navigation logic here');
         });
+
+        // Initialize
+        updateBudgetOptions();
+    </script>
+
+    <!-- EmailJS SDK - Add this to enable email sending -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            // Initialize with your EmailJS public key
+            // emailjs.init("YOUR_PUBLIC_KEY");
+        })();
     </script>
 </body>
 </html>
