@@ -293,6 +293,9 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 1px solid rgba(212, 175, 55, 0.1);
             cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
         }
 
         .blog-card:hover {
@@ -456,7 +459,7 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
-            align-items: center;
+            align-items: start;
         }
 
         .contact-info h2 {
@@ -535,6 +538,27 @@
         .form-group textarea {
             resize: vertical;
             min-height: 120px;
+        }
+
+        .currency-select {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .currency-select select {
+            width: 100%;
+        }
+
+        .budget-display {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 8px;
+            padding: 0.8rem;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--gold);
+            text-align: center;
         }
 
         /* Footer */
@@ -620,43 +644,86 @@
             cursor: pointer;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-
-            .contact-container {
-                grid-template-columns: 1fr;
-            }
-
-            .blog-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .stats-container {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        /* Blog Article Modal/Overlay */
+        .blog-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 5, 5, 0.95);
+            z-index: 2000;
+            overflow-y: auto;
+            padding: 2rem;
         }
 
-        /* Animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
+        .blog-modal.active {
+            display: block;
         }
 
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
+        .blog-modal-content {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--gray);
+            border-radius: 15px;
+            padding: 3rem;
+            position: relative;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            color: var(--gold);
+            font-size: 2rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.3s ease;
+        }
+
+        .close-modal:hover {
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        .blog-modal h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .blog-meta {
+            color: var(--gold);
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .blog-body {
+            color: var(--light-gray);
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .blog-body h3 {
+            color: var(--white);
+            margin: 2rem 0 1rem 0;
+            font-size: 1.5rem;
+        }
+
+        .blog-body p {
+            margin-bottom: 1.5rem;
+        }
+
+        .blog-body strong {
+            color: var(--white);
         }
 
         /* Audio Player Styling */
@@ -665,7 +732,7 @@
             border: 1px solid rgba(212, 175, 55, 0.2);
             border-radius: 8px;
             padding: 1rem;
-            margin-top: 1rem;
+            margin: 1.5rem 0;
             display: flex;
             align-items: center;
             gap: 1rem;
@@ -719,6 +786,53 @@
         .audio-time {
             font-size: 0.85rem;
             color: var(--light-gray);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .currency-select {
+                grid-template-columns: 1fr;
+            }
+
+            .blog-modal-content {
+                padding: 2rem 1.5rem;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
@@ -784,7 +898,7 @@
 
         <div class="blog-grid">
             <!-- Featured Article -->
-            <article class="blog-card fade-in">
+            <article class="blog-card" onclick="openBlogModal('blog1')">
                 <div class="blog-image">
                     <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?w=800&q=80" alt="Dubai Skyline">
                     <span class="blog-category">Market Report</span>
@@ -795,18 +909,18 @@
                     <p class="blog-excerpt">Record-breaking AED 72.4 billion in transactions, 63% YoY growth, and the highest monthly sales value in history. Discover why global investors are flocking to Dubai.</p>
                     
                     <!-- Audio Player -->
-                    <div class="audio-player">
-                        <button class="play-btn">▶</button>
+                    <div class="audio-player" onclick="event.stopPropagation()">
+                        <button class="play-btn" onclick="toggleAudio(this, 'audio1')">▶</button>
                         <div class="audio-wave"></div>
                         <span class="audio-time">4:30</span>
                     </div>
                     
-                    <a href="#" class="read-more">Read Full Analysis →</a>
+                    <span class="read-more">Read Full Analysis →</span>
                 </div>
             </article>
 
             <!-- Article 2 -->
-            <article class="blog-card fade-in">
+            <article class="blog-card" onclick="openBlogModal('blog2')">
                 <div class="blog-image">
                     <img src="https://images.unsplash.com/photo-1582672060674-bc2bd808a8b5?w=800&q=80" alt="Luxury Villa">
                     <span class="blog-category">Investment Guide</span>
@@ -815,12 +929,12 @@
                     <span class="blog-date">February 15, 2026</span>
                     <h3>Top 5 Emerging Neighborhoods for 2026: From Dubai Islands to South Expansion</h3>
                     <p class="blog-excerpt">Beyond Downtown and Marina: Discover the next wave of high-growth communities offering 15-20% entry discounts with massive appreciation potential.</p>
-                    <a href="#" class="read-more">Explore Areas →</a>
+                    <span class="read-more">Explore Areas →</span>
                 </div>
             </article>
 
             <!-- Article 3 -->
-            <article class="blog-card fade-in">
+            <article class="blog-card" onclick="openBlogModal('blog3')">
                 <div class="blog-image">
                     <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80" alt="Modern Architecture">
                     <span class="blog-category">Legal & Tax</span>
@@ -829,12 +943,12 @@
                     <span class="blog-date">February 10, 2026</span>
                     <h3>The Golden Visa Advantage: How AED 2M Investment Secures 10-Year UAE Residency</h3>
                     <p class="blog-excerpt">Complete guide to property investment visas, tax benefits, and the legal framework making Dubai the world's most investor-friendly destination.</p>
-                    <a href="#" class="read-more">Read Guide →</a>
+                    <span class="read-more">Read Guide →</span>
                 </div>
             </article>
 
             <!-- Article 4 -->
-            <article class="blog-card fade-in">
+            <article class="blog-card" onclick="openBlogModal('blog4')">
                 <div class="blog-image">
                     <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&q=80" alt="Dubai Marina">
                     <span class="blog-category">Yield Analysis</span>
@@ -843,12 +957,12 @@
                     <span class="blog-date">February 5, 2026</span>
                     <h3>Cash Flow Kings: Maximizing 8% Rental Returns in Business Bay & JVC</h3>
                     <p class="blog-excerpt">Deep dive into rental yield strategies, tenant demographics, and why 87% cash transactions create unprecedented market stability.</p>
-                    <a href="#" class="read-more">View Analysis →</a>
+                    <span class="read-more">View Analysis →</span>
                 </div>
             </article>
 
             <!-- Article 5 -->
-            <article class="blog-card fade-in">
+            <article class="blog-card" onclick="openBlogModal('blog5')">
                 <div class="blog-image">
                     <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80" alt="Luxury Interior">
                     <span class="blog-category">Off-Plan</span>
@@ -857,12 +971,12 @@
                     <span class="blog-date">February 1, 2026</span>
                     <h3>Off-Plan Surge: 128% Value Increase & Post-Handover Payment Plans Explained</h3>
                     <p class="blog-excerpt">Why off-plan sales are dominating January 2026, and how to leverage developer incentives for maximum capital efficiency.</p>
-                    <a href="#" class="read-more">Learn Strategy →</a>
+                    <span class="read-more">Learn Strategy →</span>
                 </div>
             </article>
 
             <!-- Article 6 -->
-            <article class="blog-card fade-in">
+            <article class="blog-card" onclick="openBlogModal('blog6')">
                 <div class="blog-image">
                     <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80" alt="Downtown Dubai">
                     <span class="blog-category">Luxury Market</span>
@@ -871,7 +985,7 @@
                     <span class="blog-date">January 28, 2026</span>
                     <h3>Ultra-Luxury Trends: Branded Residences & The $100M Villa Market</h3>
                     <p class="blog-excerpt">Inside Emirates Hills and Palm Jumeirah: Why global HNWIs are paying premiums for limited-edition trophy assets.</p>
-                    <a href="#" class="read-more">Read Report →</a>
+                    <span class="read-more">Read Report →</span>
                 </div>
             </article>
         </div>
@@ -888,6 +1002,149 @@
             </div>
         </div>
     </section>
+
+    <!-- Blog Modals (Hidden by default) -->
+    <div id="blog1" class="blog-modal" onclick="closeBlogModal(event)">
+        <div class="blog-modal-content" onclick="event.stopPropagation()">
+            <button class="close-modal" onclick="closeBlogModalById('blog1')">&times;</button>
+            <h2>Dubai Real Estate: Why January 2026 Marks the Beginning of a New Investment Era</h2>
+            <div class="blog-meta">February 18, 2026 | Market Report | 8 min read</div>
+            
+            <div class="audio-player">
+                <button class="play-btn" onclick="toggleAudio(this, 'audio1')">▶</button>
+                <div class="audio-wave"></div>
+                <span class="audio-time">4:30</span>
+            </div>
+
+            <div class="blog-body">
+                <p>January 2026 didn't just start the year strong for Dubai real estate—it shattered records. With total transaction values hitting an unprecedented <strong>AED 72.4 billion</strong> (approximately $19.7 billion), the market achieved its highest monthly sales value in the emirate's history, representing a staggering <strong>63% year-on-year increase</strong>.</p>
+                
+                <h3>The Numbers Behind the Momentum</h3>
+                <p>Property prices in Dubai have risen approximately 10-13% year-on-year as of January 2026. The median price now sits at around AED 1,925 per square foot ($524/sq ft), with prime locations commanding significantly higher premiums.</p>
+                
+                <p>What's driving this unprecedented growth? A combination of zero property tax, 6-8% rental yields, and a population growing by 17,000 new residents monthly. Dubai is welcoming the world, and the world is investing in Dubai.</p>
+                
+                <h3>Why Global Investors Are Choosing Dubai</h3>
+                <p>With 87% of transactions being cash purchases, Dubai's market stability is unmatched. Compare this to leveraged Western markets, and the appeal becomes clear. Add in the Golden Visa program—offering 10-year residency for AED 2M investments—and you have a perfect storm for capital inflow.</p>
+                
+                <p><strong>Ready to explore opportunities?</strong> Contact us below for exclusive pre-market listings and personalized investment strategies.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="blog2" class="blog-modal" onclick="closeBlogModal(event)">
+        <div class="blog-modal-content" onclick="event.stopPropagation()">
+            <button class="close-modal" onclick="closeBlogModalById('blog2')">&times;</button>
+            <h2>Top 5 Emerging Neighborhoods for 2026</h2>
+            <div class="blog-meta">February 15, 2026 | Investment Guide | 6 min read</div>
+            
+            <div class="blog-body">
+                <p>While Downtown Dubai and Dubai Marina remain blue-chip investments, savvy investors are looking beyond the established names. Here are the five neighborhoods poised for exceptional growth in 2026:</p>
+                
+                <h3>1. Dubai Islands</h3>
+                <p>The next evolution of waterfront living, offering 15-20% entry discounts compared to Palm Jumeirah. Major launches in January 2026 include LIV Oceanside and Helvetia Marine, with completion timelines between 2027-2029.</p>
+                
+                <h3>2. Dubai South</h3>
+                <p>Added 653 new companies in 2025, pushing operational firms beyond 4,200. This creates a built-in tenant base for residential investors, with prices still 30% below central Dubai.</p>
+                
+                <h3>3. The Oasis by Emaar</h3>
+                <p>Mareva and Mareva 2 villa launches are selling out within hours. This master-planned community offers the villa lifestyle at townhouse prices, with handover in Q1 2030.</p>
+                
+                <h3>4. Jumeirah Village Circle (JVC)</h3>
+                <p>Still the best value entry point for rental yield investors. 1-bedroom apartments starting at AED 700,000 delivering 7-8% net yields.</p>
+                
+                <h3>5. Business Bay</h3>
+                <p>The central business district continues to mature, with waterfront properties now commanding Marina-level rents at 20% lower entry prices.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="blog3" class="blog-modal" onclick="closeBlogModal(event)">
+        <div class="blog-modal-content" onclick="event.stopPropagation()">
+            <button class="close-modal" onclick="closeBlogModalById('blog3')">&times;</button>
+            <h2>The Golden Visa Advantage</h2>
+            <div class="blog-meta">February 10, 2026 | Legal & Tax | 5 min read</div>
+            
+            <div class="blog-body">
+                <p>The UAE's Golden Visa program has transformed Dubai from a property investment destination into a lifestyle upgrade for global citizens. Here's everything you need to know:</p>
+                
+                <h3>Investment Requirements</h3>
+                <p>Property investments starting at <strong>AED 2 million</strong> (approximately $545,000, €505,000, or £425,000) qualify investors for the 10-year renewable visa. This can be a single property or a portfolio, and can include off-plan projects with specific payment milestones.</p>
+                
+                <h3>Tax Benefits</h3>
+                <p>Dubai offers zero income tax, zero capital gains tax, and zero property tax. For high-net-worth individuals from high-tax jurisdictions, this represents savings of 40-50% annually.</p>
+                
+                <h3>Family Inclusion</h3>
+                <p>The Golden Visa extends to spouse, children (regardless of age if unmarried), and even domestic staff. It's not just an investment visa—it's a family relocation solution.</p>
+                
+                <h3>Business Benefits</h3>
+                <p>Visa holders can sponsor unlimited domestic workers, establish businesses on the mainland without local partners, and enjoy 100% business ownership.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="blog4" class="blog-modal" onclick="closeBlogModal(event)">
+        <div class="blog-modal-content" onclick="event.stopPropagation()">
+            <button class="close-modal" onclick="closeBlogModalById('blog4')">&times;</button>
+            <h2>Cash Flow Kings: Maximizing Rental Returns</h2>
+            <div class="blog-meta">February 5, 2026 | Yield Analysis | 7 min read</div>
+            
+            <div class="blog-body">
+                <p>Dubai's rental market is delivering yields that seem almost impossible in today's global economy. Here's how to capture 8% returns consistently:</p>
+                
+                <h3>The Business Bay Strategy</h3>
+                <p>1-bedroom apartments purchased at AED 1.2M ($327k) renting for AED 85,000 ($23k) annually. That's 7% gross, 6% net after service charges. The key? Buying in buildings with metro access and waterfront views.</p>
+                
+                <h3>JVC: The Yield Champion</h3>
+                <p>Jumeirah Village Circle consistently delivers 7-8% net yields. A AED 750,000 ($204k) 1-bedroom rents for AED 55,000 ($15k) annually. The tenant base is young professionals priced out of Marina but wanting community living.</p>
+                
+                <h3>The Cash Buyer Advantage</h3>
+                <p>With 87% of Dubai purchases being cash transactions, there's no mortgage stress forcing fire sales. This market stability means your rental income is secure, and capital appreciation is steady rather than volatile.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="blog5" class="blog-modal" onclick="closeBlogModal(event)">
+        <div class="blog-modal-content" onclick="event.stopPropagation()">
+            <button class="close-modal" onclick="closeBlogModalById('blog5')">&times;</button>
+            <h2>Off-Plan Surge: 128% Value Increase</h2>
+            <div class="blog-meta">February 1, 2026 | Off-Plan | 6 min read</div>
+            
+            <div class="blog-body">
+                <p>Off-plan sales in January 2026 surged 128% year-on-year. Here's why smart money is buying off-plan in Dubai:</p>
+                
+                <h3>Price Advantages</h3>
+                <p>Off-plan properties typically trade at 10-15% discounts to ready equivalents. Buy at today's prices, pay over 3-4 years, and take delivery when the market has appreciated further.</p>
+                
+                <h3>Payment Plans</h3>
+                <p>Developers are offering unprecedented flexibility: 50/50 plans (50% during construction, 50% post-handover), and even 60/40 structures. This means positive cash flow from day one of ownership.</p>
+                
+                <h3>Developer Incentives</h3>
+                <p>Many developers are waiving DLD fees (4% of property value), offering free property management for 2 years, and even guaranteeing rental yields for the first 24 months.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="blog6" class="blog-modal" onclick="closeBlogModal(event)">
+        <div class="blog-modal-content" onclick="event.stopPropagation()">
+            <button class="close-modal" onclick="closeBlogModalById('blog6')">&times;</button>
+            <h2>Ultra-Luxury Trends: The $100M Villa Market</h2>
+            <div class="blog-meta">January 28, 2026 | Luxury Market | 5 min read</div>
+            
+            <div class="blog-body">
+                <p>Dubai's ultra-luxury market is in a league of its own. With 14,000+ HNWIs relocating to Dubai in 2025, the trophy asset market is booming:</p>
+                
+                <h3>Emirates Hills</h3>
+                <p>The "Beverly Hills of Dubai" commands AED 12M+ ($3.3M+) for villas, with lakefront properties trading at AED 100M+ ($27M). Inventory is limited—only 700 villas exist in this exclusive community.</p>
+                
+                <h3>Palm Jumeirah</h3>
+                <p>Signature villas on the fronds now start at AED 20M ($5.4M), with beachfront mansions reaching AED 80M+ ($22M). The new Palm Jebel Ali expansion is creating renewed interest in the original Palm.</p>
+                
+                <h3>Branded Residences</h3>
+                <p>Armani, Bugatti, and Mercedes-Benz branded residences are commanding 30-40% premiums. Buyers aren't just purchasing property—they're buying into luxury brand lifestyles.</p>
+            </div>
+        </div>
+    </div>
 
     <!-- Contact Section -->
     <section class="contact-section" id="contact">
@@ -944,16 +1201,30 @@
                         <option>Portfolio Diversification</option>
                     </select>
                 </div>
+                
+                <!-- Multi-Currency Budget Section -->
                 <div class="form-group">
-                    <label>Budget Range (USD)</label>
-                    <select>
-                        <option>$300k - $500k</option>
-                        <option>$500k - $1M</option>
-                        <option>$1M - $3M</option>
-                        <option>$3M - $5M</option>
-                        <option>$5M+</option>
-                    </select>
+                    <label>Budget Range</label>
+                    <div class="currency-select">
+                        <select id="budgetCurrency" onchange="updateBudgetOptions()">
+                            <option value="USD">USD ($)</option>
+                            <option value="AED" selected>AED (د.إ)</option>
+                            <option value="EUR">EUR (€)</option>
+                            <option value="GBP">GBP (£)</option>
+                        </select>
+                        <select id="budgetAmount">
+                            <option value="300-500k">300k - 500k</option>
+                            <option value="500k-1m">500k - 1M</option>
+                            <option value="1m-3m" selected>1M - 3M</option>
+                            <option value="3m-5m">3M - 5M</option>
+                            <option value="5m+">5M+</option>
+                        </select>
+                    </div>
+                    <div class="budget-display" id="budgetDisplay">
+                        Approx. $272,000 - $545,000 USD
+                    </div>
                 </div>
+
                 <div class="form-group">
                     <label>Message</label>
                     <textarea placeholder="Tell me about your investment goals..."></textarea>
@@ -1022,20 +1293,120 @@
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
         // Audio player functionality
-        document.querySelectorAll('.play-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const isPlaying = this.textContent === '❚❚';
-                document.querySelectorAll('.play-btn').forEach(b => {
-                    b.textContent = '▶';
-                    b.closest('.audio-player').querySelector('.audio-wave').style.opacity = '0.5';
-                });
-                
-                if (!isPlaying) {
-                    this.textContent = '❚❚';
-                    this.closest('.audio-player').querySelector('.audio-wave').style.opacity = '1';
-                }
+        function toggleAudio(btn, audioId) {
+            const isPlaying = btn.textContent === '❚❚';
+            document.querySelectorAll('.play-btn').forEach(b => {
+                b.textContent = '▶';
+                const wave = b.closest('.audio-player')?.querySelector('.audio-wave');
+                if (wave) wave.style.opacity = '0.5';
             });
+            
+            if (!isPlaying) {
+                btn.textContent = '❚❚';
+                const wave = btn.closest('.audio-player')?.querySelector('.audio-wave');
+                if (wave) wave.style.opacity = '1';
+            }
+        }
+
+        // Blog Modal Functions
+        function openBlogModal(blogId) {
+            document.getElementById(blogId).classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeBlogModal(event) {
+            if (event.target.classList.contains('blog-modal')) {
+                event.target.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        function closeBlogModalById(blogId) {
+            document.getElementById(blogId).classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.blog-modal.active').forEach(modal => {
+                    modal.classList.remove('active');
+                });
+                document.body.style.overflow = 'auto';
+            }
         });
+
+        // Multi-Currency Budget Logic
+        const exchangeRates = {
+            'USD': 1,
+            'AED': 3.67,
+            'EUR': 0.92,
+            'GBP': 0.79
+        };
+
+        const budgetRanges = {
+            '300-500k': { min: 300000, max: 500000 },
+            '500k-1m': { min: 500000, max: 1000000 },
+            '1m-3m': { min: 1000000, max: 3000000 },
+            '3m-5m': { min: 3000000, max: 5000000 },
+            '5m+': { min: 5000000, max: null }
+        };
+
+        function formatCurrency(amount, currency) {
+            const symbols = {
+                'USD': '$',
+                'AED': 'د.إ',
+                'EUR': '€',
+                'GBP': '£'
+            };
+            
+            if (amount >= 1000000) {
+                return symbols[currency] + (amount / 1000000).toFixed(1) + 'M';
+            } else if (amount >= 1000) {
+                return symbols[currency] + (amount / 1000).toFixed(0) + 'k';
+            }
+            return symbols[currency] + amount;
+        }
+
+        function updateBudgetOptions() {
+            const currency = document.getElementById('budgetCurrency').value;
+            const amountRange = document.getElementById('budgetAmount').value;
+            const display = document.getElementById('budgetDisplay');
+            
+            const range = budgetRanges[amountRange];
+            const rate = exchangeRates[currency];
+            
+            let minConverted = range.min / rate;
+            let maxConverted = range.max ? range.max / rate : null;
+            
+            // Convert to USD for display
+            const minUSD = range.min / exchangeRates['USD'];
+            const maxUSD = range.max ? range.max / exchangeRates['USD'] : null;
+            
+            let displayText = '';
+            if (currency === 'USD') {
+                displayText = maxConverted ? 
+                    `${formatCurrency(minConverted, currency)} - ${formatCurrency(maxConverted, currency)}` :
+                    `${formatCurrency(minConverted, currency)}+`;
+            } else {
+                const symbol = {
+                    'AED': 'د.إ',
+                    'EUR': '€',
+                    'GBP': '£'
+                }[currency];
+                
+                displayText = maxConverted ? 
+                    `${symbol}${(minConverted/1000).toFixed(0)}k - ${symbol}${(maxConverted/1000).toFixed(0)}k` :
+                    `${symbol}${(minConverted/1000).toFixed(0)}k+`;
+                
+                displayText += ` (Approx. ${formatCurrency(minUSD, 'USD')} - ${maxUSD ? formatCurrency(maxUSD, 'USD') : ''} USD)`;
+            }
+            
+            display.textContent = displayText;
+        }
+
+        // Initialize budget display
+        updateBudgetOptions();
 
         // Mobile menu toggle
         document.querySelector('.mobile-menu-btn').addEventListener('click', () => {
