@@ -13,6 +13,8 @@
             --secondary: #0f766e;
             --accent: #f59e0b;
             --success: #10b981;
+            --hot: #dc2626;
+            --hot-light: #fee2e2;
             --dark: #1e293b;
             --gray-900: #0f172a;
             --gray-800: #1e293b;
@@ -141,6 +143,20 @@
             background: var(--primary-dark);
             transform: translateY(-1px);
             box-shadow: var(--shadow-md);
+        }
+
+        .cta-button.hot {
+            background: var(--hot);
+            animation: pulse-hot 2s infinite;
+        }
+
+        .cta-button.hot:hover {
+            background: #b91c1c;
+        }
+
+        @keyframes pulse-hot {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.4); }
+            50% { box-shadow: 0 0 0 10px rgba(220, 38, 38, 0); }
         }
 
         /* WhatsApp Float Button */
@@ -297,6 +313,197 @@
         .btn-secondary:hover {
             background: rgba(255, 255, 255, 0.1);
             border-color: var(--white);
+        }
+
+        /* Hot Project Section */
+        .hot-project-section {
+            padding: 4rem 5%;
+            background: linear-gradient(135deg, var(--hot-light) 0%, var(--white) 100%);
+            border-bottom: 3px solid var(--hot);
+        }
+
+        .hot-project-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hot-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--hot);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+            animation: pulse-hot 2s infinite;
+        }
+
+        .hot-badge::before {
+            content: '🔥';
+        }
+
+        .hot-project-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hot-project-image {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .hot-project-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .hot-project-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 2rem;
+            color: white;
+        }
+
+        .developer-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--gray-900);
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .hot-project-content h2 {
+            font-size: 2.2rem;
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .hot-project-content .subtitle {
+            font-size: 1.2rem;
+            color: var(--gray-600);
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .project-highlights {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .highlight-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid var(--gray-200);
+        }
+
+        .highlight-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-light);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .highlight-text {
+            font-size: 0.9rem;
+        }
+
+        .highlight-text strong {
+            display: block;
+            color: var(--gray-900);
+            margin-bottom: 0.2rem;
+        }
+
+        .highlight-text span {
+            color: var(--gray-500);
+            font-size: 0.85rem;
+        }
+
+        .returns-box {
+            background: var(--gray-900);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+        }
+
+        .returns-box h4 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .returns-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .return-item {
+            text-align: center;
+        }
+
+        .return-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--success);
+            display: block;
+        }
+
+        .return-label {
+            font-size: 0.8rem;
+            color: var(--gray-400);
+            margin-top: 0.25rem;
+        }
+
+        .hot-cta {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .hot-project-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .project-highlights {
+                grid-template-columns: 1fr;
+            }
+            
+            .returns-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         /* Trust Bar */
@@ -676,7 +883,6 @@
             box-shadow: 0 0 0 3px var(--primary-light);
         }
 
-        /* Fix dropdown visibility */
         .form-group select {
             appearance: none;
             background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
@@ -729,7 +935,6 @@
             content: '🔒';
         }
 
-        /* Success Message */
         .success-message {
             display: none;
             background: var(--success);
@@ -741,9 +946,259 @@
             font-weight: 600;
         }
 
-        /* Spam Protection */
         .honeypot {
             display: none !important;
+        }
+
+        /* Full Article Modal */
+        .article-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 3000;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+
+        .article-modal.active {
+            display: block;
+        }
+
+        .article-content {
+            max-width: 900px;
+            margin: 2rem auto;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .article-header {
+            position: relative;
+            height: 400px;
+            background: linear-gradient(135deg, var(--gray-900) 0%, var(--gray-800) 100%);
+            display: flex;
+            align-items: flex-end;
+            padding: 3rem;
+        }
+
+        .article-header img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+        }
+
+        .article-header-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+        }
+
+        .article-header-content .hot-badge {
+            position: static;
+            margin-bottom: 1rem;
+        }
+
+        .article-header-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .article-header-content .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .close-article {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 3;
+            transition: all 0.3s ease;
+        }
+
+        .close-article:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .article-body {
+            padding: 3rem;
+            color: var(--gray-700);
+            line-height: 1.8;
+        }
+
+        .article-body h2 {
+            color: var(--gray-900);
+            margin: 2.5rem 0 1rem 0;
+            font-size: 1.5rem;
+        }
+
+        .article-body h3 {
+            color: var(--gray-800);
+            margin: 2rem 0 1rem 0;
+            font-size: 1.2rem;
+        }
+
+        .article-body p {
+            margin-bottom: 1.5rem;
+        }
+
+        .article-body strong {
+            color: var(--gray-900);
+        }
+
+        .article-body ul {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+
+        .article-body li {
+            margin-bottom: 0.5rem;
+        }
+
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        .price-table th,
+        .price-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .price-table th {
+            background: var(--gray-50);
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+
+        .price-table tr:hover {
+            background: var(--gray-50);
+        }
+
+        .highlight-box {
+            background: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .returns-highlight {
+            background: var(--hot-light);
+            border: 2px solid var(--hot);
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+
+        .returns-highlight h4 {
+            color: var(--hot);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .returns-grid-detailed {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .return-detail {
+            text-align: center;
+        }
+
+        .return-detail .number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--hot);
+            display: block;
+        }
+
+        .return-detail .label {
+            font-size: 0.9rem;
+            color: var(--gray-600);
+            margin-top: 0.5rem;
+        }
+
+        .developer-box {
+            background: var(--gray-900);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+
+        .developer-box h4 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .cta-box h3 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .article-header {
+                height: 300px;
+                padding: 2rem;
+            }
+
+            .article-header-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .article-body {
+                padding: 1.5rem;
+            }
+
+            .returns-grid-detailed {
+                grid-template-columns: 1fr;
+            }
+
+            .price-table {
+                font-size: 0.85rem;
+            }
+
+            .price-table th,
+            .price-table td {
+                padding: 0.75rem;
+            }
         }
 
         /* Mobile Menu */
@@ -803,7 +1258,6 @@
             transform: translateY(0);
         }
 
-        /* Loading State */
         .btn-loading {
             position: relative;
             color: transparent !important;
@@ -858,11 +1312,332 @@
             <h1>Smart Investors Are Buying <span>Dubai Real Estate</span> in 2026</h1>
             <p>Join 17,000+ monthly arrivals capitalizing on record-breaking growth, 6-8% rental yields, and zero tax. Your wealth deserves a Dubai address.</p>
             <div class="hero-buttons">
-                <a href="#contact" class="cta-button">Secure Your Consultation</a>
+                <a href="#hot-project" class="cta-button hot">View Hot Project</a>
                 <a href="#blog" class="btn-secondary">View Market Reports</a>
             </div>
         </div>
     </section>
+
+    <!-- Hot Project Section - Serenia District -->
+    <section class="hot-project-section" id="hot-project">
+        <div class="hot-project-container">
+            <div class="hot-badge">🔥 Standout Hot Project</div>
+            
+            <div class="hot-project-grid">
+                <div class="hot-project-image">
+                    <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&q=80" alt="Serenia District Jumeirah Heights">
+                    <div class="hot-project-overlay">
+                        <div class="developer-badge">PALMA HOLDING</div>
+                        <div style="font-size: 1.5rem; font-weight: 700;">Serenia District</div>
+                        <div style="font-size: 0.9rem; opacity: 0.9;">Jumeirah Heights B-Frond</div>
+                    </div>
+                </div>
+                
+                <div class="hot-project-content">
+                    <h2>Serenia District by Palma Holding</h2>
+                    <div class="subtitle">AED 5 Billion Masterpiece | 600,000 Sq.Ft. Waterfront Community | Handover Dec 2028</div>
+                    
+                    <p style="color: var(--gray-600); margin-bottom: 1rem;">Six-tower ecosystem by Nikken Sekkei (world's 3rd largest architect) featuring 100,000 sq.ft. signature clubhouse—the largest amenity offering in New Dubai.</p>
+                    
+                    <div class="project-highlights">
+                        <div class="highlight-item">
+                            <div class="highlight-icon">📍</div>
+                            <div class="highlight-text">
+                                <strong>Prime Location</strong>
+                                <span>Jumeirah Heights B-Frond, 2 Metro stations</span>
+                            </div>
+                        </div>
+                        <div class="highlight-item">
+                            <div class="highlight-icon">🏗️</div>
+                            <div class="highlight-text">
+                                <strong>Phase 1: West Residences</strong>
+                                <span>48-storey tower, 1-3 bed apartments</span>
+                            </div>
+                        </div>
+                        <div class="highlight-item">
+                            <div class="highlight-icon">💰</div>
+                            <div class="highlight-text">
+                                <strong>Entry Price</strong>
+                                <span>AED 1.86M ($506k) for 1-bed</span>
+                            </div>
+                        </div>
+                        <div class="highlight-item">
+                            <div class="highlight-icon">📅</div>
+                            <div class="highlight-text">
+                                <strong>Payment Plan</strong>
+                                <span>60/40 with only 10% down</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="returns-box">
+                        <h4>📈 Projected Returns</h4>
+                        <div class="returns-grid">
+                            <div class="return-item">
+                                <span class="return-number">15-25%</span>
+                                <div class="return-label">Capital Appreciation by Handover (Dec 2028)</div>
+                            </div>
+                            <div class="return-item">
+                                <span class="return-number">6-8%</span>
+                                <div class="return-label">Rental Yield Post-Handover</div>
+                            </div>
+                            <div class="return-item">
+                                <span class="return-number">31.9%</span>
+                                <div class="return-label">Jumeirah Islands Area Growth (2024)</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="hot-cta">
+                        <button class="cta-button hot" onclick="openSereniaArticle()" style="flex: 1;">Read Full Investment Analysis</button>
+                        <a href="#contact" class="cta-button" style="flex: 1; text-align: center;">Enquire Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Full Serenia District Article Modal -->
+    <div id="sereniaArticle" class="article-modal" onclick="closeSereniaArticle(event)">
+        <div class="article-content" onclick="event.stopPropagation()">
+            <div class="article-header">
+                <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&q=80" alt="Serenia District">
+                <button class="close-article" onclick="closeSereniaArticleById()">&times;</button>
+                <div class="article-header-content">
+                    <div class="hot-badge">🔥 Standout Hot Project</div>
+                    <h1>Serenia District: Palma Holding's AED 5 Billion Masterpiece Redefining Waterfront Living in Jumeirah Heights</h1>
+                    <div class="subtitle">Why This Six-Tower Ecosystem Represents Dubai's Most Compelling Off-Plan Investment Opportunity in 2026</div>
+                </div>
+            </div>
+            
+            <div class="article-body">
+                <div class="highlight-box">
+                    <strong>Key Investment Highlight:</strong> Serenia District is an off-plan development with completion set for December 2028, offering investors ground-floor entry into a completed community with projected 15-25% capital appreciation by handover and 6-8% rental yields thereafter.
+                </div>
+
+                <h2>The Development: A New Benchmark for Integrated Living</h2>
+                <p><strong>Serenia District</strong> is Palma Holding's flagship master-planned community, strategically positioned on <strong>Jumeirah Heights B-Frond</strong>—a premium 600,000 square feet parcel bridging Jumeirah Islands and JLT (Jumeirah Lakes Towers). This isn't merely a residential project; it's a comprehensive lifestyle ecosystem comprising six distinct towers designed by <strong>Nikken Sekkei</strong>, the world's third-largest architectural firm.</p>
+                
+                <p>The development's first phase, <strong>West Residences</strong>, launched as a 48-storey tower offering meticulously designed 1, 2, and 3-bedroom apartments with sizes ranging from <strong>825 to 2,650 square feet</strong>. With completion set for <strong>December 2028</strong>, investors are entering at the ground floor of what industry experts are calling "the most thoughtfully designed community in New Dubai."</p>
+
+                <h2>Investment Fundamentals: The Numbers That Matter</h2>
+                
+                <table class="price-table">
+                    <thead>
+                        <tr>
+                            <th>Unit Type</th>
+                            <th>Size (Sq.Ft.)</th>
+                            <th>Starting Price (AED)</th>
+                            <th>Est. USD Equivalent</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>1 Bedroom</strong></td>
+                            <td>825 – 899</td>
+                            <td>1,860,000</td>
+                            <td>~$506,000</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2 Bedroom</strong></td>
+                            <td>1,303 – 1,475</td>
+                            <td>3,500,000</td>
+                            <td>~$953,000</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3 Bedroom</strong></td>
+                            <td>2,631 – 2,650</td>
+                            <td>6,500,000</td>
+                            <td>~$1.77M</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p><strong>Payment Plan:</strong> Exceptionally investor-friendly <strong>60/40 structure</strong> with only <strong>10% down payment</strong>:</p>
+                <ul>
+                    <li>10% on booking</li>
+                    <li>10% within 30 days</li>
+                    <li>10% June 2025</li>
+                    <li>10% January 2026</li>
+                    <li>10% January 2027</li>
+                    <li>10% June 2027</li>
+                    <li><strong>40% on handover (December 2028)</strong></li>
+                </ul>
+                <p>This payment structure minimizes capital commitment during construction while maximizing leverage for capital appreciation.</p>
+
+                <div class="returns-highlight">
+                    <h4>📈 Return Projections: Off-Plan to Handover</h4>
+                    <div class="returns-grid-detailed">
+                        <div class="return-detail">
+                            <span class="number">15-25%</span>
+                            <div class="label">Capital Appreciation by Dec 2028 Handover<br>Based on Jumeirah Islands 31.9% growth (2024) and comparable off-plan premiums</div>
+                        </div>
+                        <div class="return-detail">
+                            <span class="number">6-8%</span>
+                            <div class="label">Gross Rental Yield Post-Handover<br>Superior amenity offering commands 10-15% rental premium over standard JLT units</div>
+                        </div>
+                        <div class="return-detail">
+                            <span class="number">40%</span>
+                            <div class="label">Payment on Handover<br>Pay balance only when asset is complete and income-ready</div>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>The Location Advantage: Jumeirah Heights Strategic Positioning</h2>
+                <p>Serenia District occupies what developers call a "super prime location" directly on <strong>Sheikh Zayed Road</strong>, the GCC's busiest commercial corridor. The specific advantages include:</p>
+                
+                <p><strong>Immediate Connectivity:</strong></p>
+                <ul>
+                    <li><strong>2 operational Metro stations</strong> serving the district</li>
+                    <li><strong>1.7 km</strong> to The Walk JBR</li>
+                    <li><strong>2.0 km</strong> to Marina Walk</li>
+                    <li><strong>1.9 km</strong> to Marina Beach</li>
+                    <li><strong>2.7 km</strong> to Emirates Golf Club</li>
+                </ul>
+
+                <p><strong>Economic Context:</strong></p>
+                <ul>
+                    <li>JLT/DMCC contributes <strong>over 10% to Dubai's GDP</strong></li>
+                    <li>DMCC ranked <strong>World's #1 Free Zone for 9 consecutive years</strong> (Financial Times FDI Magazine)</li>
+                    <li>24,000+ businesses and 65,000+ employees in immediate vicinity</li>
+                </ul>
+                <p>This isn't just a residential address—it's a position within Dubai's economic engine room.</p>
+
+                <h2>The Serenia Signature Clubhouse: 100,000 Sq.Ft. of Amenities</h2>
+                <p>The development's crown jewel is a <strong>four-level, 100,000 square foot clubhouse</strong>—the largest and most comprehensive facility of its kind in a Dubai residential development.</p>
+                
+                <p><strong>Level 1 – Wellness & Sports:</strong></p>
+                <ul>
+                    <li>World-class spa with male/female facilities</li>
+                    <li>State-of-the-art gym + dedicated ladies' gym</li>
+                    <li>Indoor paddle court</li>
+                    <li>Indoor basketball half-court</li>
+                    <li>Multi-functional games room</li>
+                </ul>
+
+                <p><strong>Rooftop Level:</strong></p>
+                <ul>
+                    <li>Panoramic infinity pool</li>
+                    <li>Rooftop café with skyline views</li>
+                </ul>
+
+                <p><strong>District-Wide Amenities (40+ facilities across six zones):</strong></p>
+                <ul>
+                    <li><strong>Health & Social</strong> – Lap pools, cascading water features, BBQ areas</li>
+                    <li><strong>Sports & Recreation</strong> – 1km active path, sports courts, event lawns</li>
+                    <li><strong>Family Oasis</strong> – Family pools, shaded structures, private gardens</li>
+                    <li><strong>Nature Discovery</strong> – Nature playgrounds, treehouses, wadi water play</li>
+                    <li><strong>Wellness Retreat</strong> – Yoga deck, meditation gardens, wellness lawns</li>
+                    <li><strong>Retail & F&B</strong> – On-site dining and boutique retail</li>
+                </ul>
+
+                <h2>Architectural Philosophy: Japanese Precision Meets Dubai Ambition</h2>
+                <p>Serenia District's design incorporates <strong>Japanese Ireko design principles</strong>—emphasizing clean lines, open spaces, and seamless indoor-outdoor connectivity. The buildings feature <strong>starlight façade lighting</strong> creating a distinctive nighttime presence, while floor-to-ceiling windows maximize natural light and panoramic views of Jumeirah Islands' waterways.</p>
+                
+                <p>Palma Holding's collaboration with Nikken Sekkei brings institutional-grade architectural rigor to the residential sector. This is evident in the <strong>super-efficient layouts</strong> that maximize usable space—a critical factor for rental yield optimization.</p>
+
+                <div class="developer-box">
+                    <h4>🏆 Developer Track Record: Palma Holding</h4>
+                    <p>Founded by real estate tycoon <strong>Kareem Derbas</strong> in 2002, Palma Holding has delivered:</p>
+                    <ul style="margin: 1rem 0;">
+                        <li><strong>8 million square feet</strong> of developed space</li>
+                        <li><strong>AED 16 billion</strong> in asset value</li>
+                        <li>Iconic projects: Cayan Infinity Tower, Silverene Towers, Serenia Residences The Palm</li>
+                    </ul>
+                    <p><strong>Recent Recognition:</strong> At the <strong>Arabian Property Awards 2025</strong>, Palma swept all three entered categories, with West Residence at Serenia District winning <strong>"Residential High-Rise Development Dubai"</strong>.</p>
+                </div>
+
+                <h2>Investment Case: Why Serenia District in 2026</h2>
+                
+                <h3>1. Proven Developer Track Record</h3>
+                <p>Palma Holding's institutional credibility reduces execution risk—a critical factor for off-plan investments with 2028 completion timelines.</p>
+
+                <h3>2. Market Timing & Appreciation Potential</h3>
+                <p>Jumeirah Islands showed a <strong>31.9% property value increase in 2024</strong>. With neighboring Dubai Marina delivering <strong>7.7% average rental yields</strong>, Serenia District's superior amenity offering positions it for premium rental premiums.</p>
+
+                <h3>3. Limited Supply Dynamics</h3>
+                <p>The 600,000 sq.ft. plot represents one of the last significant waterfront development parcels in the Jumeirah Islands/JLT corridor. Future phases will likely see price escalations as the community matures.</p>
+
+                <h3>4. Lifestyle-First Design = Tenant Retention</h3>
+                <p>The 40+ amenities across six lifestyle zones create a "sticky" community that reduces tenant turnover—a critical factor for net rental yield optimization. The development specifically targets young professionals working in DMCC/JLT, families seeking resort-style living with urban connectivity, and wellness-focused residents prioritizing health amenities.</p>
+
+                <h2>Target Buyer Profile & Unit Strategy</h2>
+                <p><strong>Primary Investors:</strong></p>
+                <ul>
+                    <li><strong>Yield-focused buyers</strong> seeking 6-8% net rental returns</li>
+                    <li><strong>End-users</strong> prioritizing wellness amenities and community living</li>
+                    <li><strong>Portfolio diversifiers</strong> adding Dubai exposure with 2028 completion timeline</li>
+                    <li><strong>Golden Visa applicants</strong> using AED 2M+ investment for 10-year residency</li>
+                </ul>
+
+                <p><strong>Optimal Unit Strategy:</strong></p>
+                <ul>
+                    <li><strong>1-bedrooms:</strong> Highest rental demand from JLT professionals, best yield potential</li>
+                    <li><strong>2-bedrooms:</strong> Balanced yield and appreciation, strong resale market</li>
+                    <li><strong>3-bedrooms:</strong> Premium positioning for end-user resale, limited supply</li>
+                </ul>
+
+                <h2>Competitive Positioning</h2>
+                <table class="price-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Serenia District</th>
+                            <th>Typical JLT/Marina Development</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Clubhouse Size</td>
+                            <td><strong>100,000 sq.ft.</strong></td>
+                            <td>10,000-20,000 sq.ft.</td>
+                        </tr>
+                        <tr>
+                            <td>Payment Plan</td>
+                            <td><strong>60/40, 10% down</strong></td>
+                            <td>50/50 or 70/30</td>
+                        </tr>
+                        <tr>
+                            <td>Amenity Zones</td>
+                            <td><strong>6 distinct lifestyle areas</strong></td>
+                            <td>2-3 generic areas</td>
+                        </tr>
+                        <tr>
+                            <td>Architect</td>
+                            <td><strong>Nikken Sekkei (Top 3 global)</strong></td>
+                            <td>Regional firms</td>
+                        </tr>
+                        <tr>
+                            <td>Completion</td>
+                            <td><strong>Dec 2028 (certain)</strong></td>
+                            <td>Often delayed</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h2>Final Assessment: The Off-Play Advantage</h2>
+                <p>Serenia District represents a <strong>rare convergence</strong> of:</p>
+                <ul>
+                    <li>✅ <strong>Proven developer</strong> with institutional track record</li>
+                    <li>✅ <strong>Superior location</strong> at Dubai's economic intersection</li>
+                    <li>✅ <strong>Unmatched amenity proposition</strong> (100K sq.ft. clubhouse)</li>
+                    <li>✅ <strong>Investor-friendly terms</strong> (10% down, 60/40 plan)</li>
+                    <li>✅ <strong>Architectural credibility</strong> via Nikken Sekkei partnership</li>
+                    <li>✅ <strong>Market timing</strong> with 31.9% area appreciation precedent</li>
+                </ul>
+
+                <p>For investors seeking <strong>exposure to Dubai's residential growth story</strong> with a <strong>2028 completion timeline</strong> that captures the emirate's continued population influx (17,000+ monthly arrivals), Serenia District offers a compelling risk-adjusted entry point.</p>
+
+                <p><strong>The development transforms the traditional Dubai "tower with pool" model into a genuine lifestyle ecosystem—positioning it for both superior rental yields and long-term capital appreciation.</strong></p>
+
+                <div class="cta-box">
+                    <h3>Secure Your Unit at Serenia District</h3>
+                    <p>Limited inventory available in Phase 1 (West Residences). Contact us for current pricing, floor plans, and developer incentives.</p>
+                    <a href="#contact" class="cta-button" style="background: white; color: var(--primary); display: inline-block;" onclick="closeSereniaArticleById(); setTimeout(() => document.getElementById('contact').scrollIntoView({behavior: 'smooth'}), 300);">Enquire Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Trust Bar -->
     <div class="trust-bar">
@@ -958,43 +1733,53 @@
     </section>
 
     <!-- Blog Modals -->
-    <div id="blog1" class="blog-modal" onclick="closeBlogModal(event)" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; overflow-y: auto; padding: 2rem;">
-        <div style="max-width: 700px; margin: 2rem auto; background: white; border-radius: 16px; padding: 2.5rem; position: relative;" onclick="event.stopPropagation()">
-            <button onclick="closeBlogModalById('blog1')" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; cursor: pointer;">&times;</button>
-            <h2 style="color: var(--gray-900); margin-bottom: 1rem; font-size: 1.8rem;">Why January 2026 Marks a New Investment Era in Dubai</h2>
-            <div style="color: var(--gray-500); margin-bottom: 1.5rem; font-size: 0.9rem;">February 18, 2026 | Market Report</div>
-            <div style="color: var(--gray-700); line-height: 1.8;">
-                <p style="margin-bottom: 1.5rem;">January 2026 didn't just start the year strong for Dubai real estate—it shattered records. With total transaction values hitting an unprecedented <strong>AED 72.4 billion</strong> (approximately $19.7 billion), the market achieved its highest monthly sales value in the emirate's history.</p>
-                <p style="margin-bottom: 1.5rem;">This represents a staggering <strong>63% year-on-year increase</strong>, signaling that Dubai has evolved from a regional player to a global investment powerhouse.</p>
-                <p>Property prices have risen approximately 10-13% year-on-year, with the median price now at around AED 1,925 per square foot. For investors, this isn't just growth—it's a structural shift in how global capital views Dubai as a wealth preservation and generation vehicle.</p>
+    <div id="blog1" class="article-modal" onclick="closeBlogModal(event)">
+        <div class="article-content" onclick="event.stopPropagation()">
+            <div class="article-header" style="height: 300px;">
+                <button class="close-article" onclick="closeBlogModalById('blog1')">&times;</button>
+                <div class="article-header-content">
+                    <div style="background: var(--primary); display: inline-block; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; margin-bottom: 1rem;">Market Report</div>
+                    <h1 style="font-size: 2rem;">Why January 2026 Marks a New Investment Era in Dubai</h1>
+                </div>
+            </div>
+            <div class="article-body">
+                <p>January 2026 didn't just start the year strong for Dubai real estate—it shattered records. With total transaction values hitting an unprecedented <strong>AED 72.4 billion</strong> (approximately $19.7 billion), the market achieved its highest monthly sales value in the emirate's history.</p>
+                <p>This represents a staggering <strong>63% year-on-year increase</strong>, signaling that Dubai has evolved from a regional player to a global investment powerhouse.</p>
             </div>
         </div>
     </div>
 
-    <div id="blog2" class="blog-modal" onclick="closeBlogModal(event)" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; overflow-y: auto; padding: 2rem;">
-        <div style="max-width: 700px; margin: 2rem auto; background: white; border-radius: 16px; padding: 2.5rem; position: relative;" onclick="event.stopPropagation()">
-            <button onclick="closeBlogModalById('blog2')" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; cursor: pointer;">&times;</button>
-            <h2 style="color: var(--gray-900); margin-bottom: 1rem; font-size: 1.8rem;">Top 5 Emerging Neighborhoods for 2026</h2>
-            <div style="color: var(--gray-500); margin-bottom: 1.5rem; font-size: 0.9rem;">February 15, 2026 | Investment Guide</div>
-            <div style="color: var(--gray-700); line-height: 1.8;">
-                <p style="margin-bottom: 1.5rem;"><strong>1. Dubai Islands:</strong> The next evolution of waterfront living, offering 15-20% entry discounts compared to Palm Jumeirah. Major launches include LIV Oceanside and Helvetia Marine.</p>
-                <p style="margin-bottom: 1.5rem;"><strong>2. Dubai South:</strong> Added 653 new companies in 2025, creating a built-in tenant base. Prices still 30% below central Dubai.</p>
-                <p style="margin-bottom: 1.5rem;"><strong>3. The Oasis by Emaar:</strong> Mareva villa launches selling out within hours. Villa lifestyle at townhouse prices.</p>
-                <p style="margin-bottom: 1.5rem;"><strong>4. JVC:</strong> Best value entry point for rental yield investors. 1-bed apartments from AED 700,000 delivering 7-8% net yields.</p>
+    <div id="blog2" class="article-modal" onclick="closeBlogModal(event)">
+        <div class="article-content" onclick="event.stopPropagation()">
+            <div class="article-header" style="height: 300px;">
+                <button class="close-article" onclick="closeBlogModalById('blog2')">&times;</button>
+                <div class="article-header-content">
+                    <div style="background: var(--primary); display: inline-block; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; margin-bottom: 1rem;">Investment Guide</div>
+                    <h1 style="font-size: 2rem;">Top 5 Emerging Neighborhoods for 2026</h1>
+                </div>
+            </div>
+            <div class="article-body">
+                <p><strong>1. Dubai Islands:</strong> The next evolution of waterfront living, offering 15-20% entry discounts compared to Palm Jumeirah.</p>
+                <p><strong>2. Dubai South:</strong> Added 653 new companies in 2025, creating a built-in tenant base. Prices still 30% below central Dubai.</p>
+                <p><strong>3. The Oasis by Emaar:</strong> Mareva villa launches selling out within hours. Villa lifestyle at townhouse prices.</p>
+                <p><strong>4. JVC:</strong> Best value entry point for rental yield investors. 1-bed apartments from AED 700,000 delivering 7-8% net yields.</p>
                 <p><strong>5. Business Bay:</strong> Central business district maturing with waterfront properties commanding Marina-level rents at 20% lower entry.</p>
             </div>
         </div>
     </div>
 
-    <div id="blog3" class="blog-modal" onclick="closeBlogModal(event)" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; overflow-y: auto; padding: 2rem;">
-        <div style="max-width: 700px; margin: 2rem auto; background: white; border-radius: 16px; padding: 2.5rem; position: relative;" onclick="event.stopPropagation()">
-            <button onclick="closeBlogModalById('blog3')" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; cursor: pointer;">&times;</button>
-            <h2 style="color: var(--gray-900); margin-bottom: 1rem; font-size: 1.8rem;">The Golden Visa: 10-Year Residency Through Property Investment</h2>
-            <div style="color: var(--gray-500); margin-bottom: 1.5rem; font-size: 0.9rem;">February 10, 2026 | Legal & Tax</div>
-            <div style="color: var(--gray-700); line-height: 1.8;">
-                <p style="margin-bottom: 1.5rem;">The UAE's Golden Visa program has transformed Dubai from a property investment destination into a lifestyle upgrade for global citizens. Property investments starting at <strong>AED 2 million</strong> (approximately $545,000) qualify investors for the 10-year renewable visa.</p>
-                <p style="margin-bottom: 1.5rem;"><strong>Tax Benefits:</strong> Dubai offers zero income tax, zero capital gains tax, and zero property tax. For high-net-worth individuals from high-tax jurisdictions, this represents savings of 40-50% annually.</p>
-                <p><strong>Family Inclusion:</strong> The Golden Visa extends to spouse, children (regardless of age if unmarried), and even domestic staff. It's not just an investment visa—it's a family relocation solution.</p>
+    <div id="blog3" class="article-modal" onclick="closeBlogModal(event)">
+        <div class="article-content" onclick="event.stopPropagation()">
+            <div class="article-header" style="height: 300px;">
+                <button class="close-article" onclick="closeBlogModalById('blog3')">&times;</button>
+                <div class="article-header-content">
+                    <div style="background: var(--primary); display: inline-block; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; margin-bottom: 1rem;">Legal & Tax</div>
+                    <h1 style="font-size: 2rem;">The Golden Visa: 10-Year Residency Through Property Investment</h1>
+                </div>
+            </div>
+            <div class="article-body">
+                <p>The UAE's Golden Visa program has transformed Dubai from a property investment destination into a lifestyle upgrade for global citizens. Property investments starting at <strong>AED 2 million</strong> (approximately $545,000) qualify investors for the 10-year renewable visa.</p>
+                <p><strong>Tax Benefits:</strong> Dubai offers zero income tax, zero capital gains tax, and zero property tax. For high-net-worth individuals from high-tax jurisdictions, this represents savings of 40-50% annually.</p>
             </div>
         </div>
     </div>
@@ -1027,7 +1812,6 @@
                     Thank you! Your inquiry has been sent successfully. We'll contact you within 24 hours.
                 </div>
 
-                <!-- Honeypot for spam protection -->
                 <div class="honeypot">
                     <input type="text" name="website" tabindex="-1" autocomplete="off">
                 </div>
@@ -1108,205 +1892,3 @@
                 navbar.classList.add('scrolled');
             } else {
                 navbar.classList.remove('scrolled');
-            }
-        });
-
-        // WhatsApp tooltip
-        setTimeout(() => {
-            document.getElementById('whatsappTooltip').classList.add('show');
-        }, 3000);
-
-        setTimeout(() => {
-            document.getElementById('whatsappTooltip').classList.remove('show');
-        }, 8000);
-
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
-
-        // Fade in animation
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-        // Blog Modal Functions
-        function openBlogModal(blogId) {
-            document.getElementById(blogId).style.display = 'block';
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeBlogModal(event) {
-            if (event.target.classList.contains('blog-modal')) {
-                event.target.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-        }
-
-        function closeBlogModalById(blogId) {
-            document.getElementById(blogId).style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                document.querySelectorAll('.blog-modal').forEach(modal => {
-                    modal.style.display = 'none';
-                });
-                document.body.style.overflow = 'auto';
-            }
-        });
-
-        // Multi-Currency Budget Logic
-        const exchangeRates = {
-            'USD': 1,
-            'AED': 3.67,
-            'EUR': 0.92,
-            'GBP': 0.79
-        };
-
-        const budgetRanges = {
-            '300-500k': { min: 300000, max: 500000 },
-            '500k-1m': { min: 500000, max: 1000000 },
-            '1m-3m': { min: 1000000, max: 3000000 },
-            '3m-5m': { min: 3000000, max: 5000000 },
-            '5m+': { min: 5000000, max: null }
-        };
-
-        function formatCurrency(amount, currency) {
-            if (amount >= 1000000) {
-                return (amount / 1000000).toFixed(1) + 'M';
-            } else if (amount >= 1000) {
-                return (amount / 1000).toFixed(0) + 'k';
-            }
-            return amount;
-        }
-
-        function updateBudgetOptions() {
-            const currency = document.getElementById('budgetCurrency').value;
-            const amountRange = document.getElementById('budgetAmount').value;
-            const display = document.getElementById('budgetDisplay');
-            
-            const range = budgetRanges[amountRange];
-            const rate = exchangeRates[currency];
-            
-            let minConverted = range.min / rate;
-            let maxConverted = range.max ? range.max / rate : null;
-            
-            const minUSD = range.min / exchangeRates['USD'];
-            const maxUSD = range.max ? range.max / exchangeRates['USD'] : null;
-            
-            const symbols = { 'AED': 'د.إ', 'USD': '$', 'EUR': '€', 'GBP': '£' };
-            const symbol = symbols[currency];
-            
-            let displayText = maxConverted ? 
-                `${symbol}${formatCurrency(minConverted, currency)} - ${symbol}${formatCurrency(maxConverted, currency)}` :
-                `${symbol}${formatCurrency(minConverted, currency)}+`;
-            
-            if (currency !== 'USD') {
-                displayText += ` (Approx. $${formatCurrency(minUSD, 'USD')} - ${maxUSD ? formatCurrency(maxUSD, 'USD') : ''} USD)`;
-            }
-            
-            display.textContent = displayText;
-        }
-
-        // Form Handling with EmailJS
-        function handleContactSubmit(event) {
-            event.preventDefault();
-            
-            const form = document.getElementById('contactForm');
-            const submitBtn = document.getElementById('submitBtn');
-            const successMsg = document.getElementById('successMessage');
-            
-            // Check honeypot
-            const honeypot = form.querySelector('input[name="website"]').value;
-            if (honeypot) {
-                console.log('Spam detected');
-                return false;
-            }
-            
-            // Validate phone
-            const phone = form.querySelector('input[name="phone"]').value;
-            const phoneRegex = /^[\+\d\s\-\(\)]{8,}$/;
-            if (!phoneRegex.test(phone)) {
-                alert('Please enter a valid phone number');
-                return false;
-            }
-            
-            // Show loading
-            submitBtn.classList.add('btn-loading');
-            submitBtn.disabled = true;
-            
-            // Collect form data
-            const formData = {
-                name: form.querySelector('input[name="name"]').value,
-                email: form.querySelector('input[name="email"]').value,
-                phone: form.querySelector('input[name="phone"]').value,
-                interest: form.querySelector('select[name="interest"]').value,
-                currency: form.querySelector('select[name="currency"]').value,
-                budget: form.querySelector('select[name="budget"]').value,
-                message: form.querySelector('textarea[name="message"]').value,
-                to_email: 'dylanpropertysales@gmail.com'
-            };
-            
-            // Send using EmailJS (you need to set up account)
-            // For now, simulate success - replace with actual EmailJS integration
-            setTimeout(() => {
-                submitBtn.classList.remove('btn-loading');
-                submitBtn.disabled = false;
-                successMsg.style.display = 'block';
-                form.reset();
-                
-                // Hide success message after 5 seconds
-                setTimeout(() => {
-                    successMsg.style.display = 'none';
-                }, 5000);
-                
-                // Scroll to success message
-                successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }, 1500);
-        }
-
-        function handleNewsletterSubmit(event) {
-            event.preventDefault();
-            const email = event.target.querySelector('input[type="email"]').value;
-            alert('Thank you! The 2026 Dubai Investment Playbook will be sent to ' + email);
-            event.target.reset();
-        }
-
-        // Mobile menu
-        document.querySelector('.mobile-menu-btn').addEventListener('click', () => {
-            alert('Mobile menu - add navigation logic here');
-        });
-
-        // Initialize
-        updateBudgetOptions();
-    </script>
-
-    <!-- EmailJS SDK - Add this to enable email sending -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <script type="text/javascript">
-        (function() {
-            // Initialize with your EmailJS public key
-            // emailjs.init("YOUR_PUBLIC_KEY");
-        })();
-    </script>
-</body>
-</html>
